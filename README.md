@@ -1,4 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# This is a Next.js 13 starter kit
+## Setting
+1. TypeScript
+2. Prettier
+3. ESLint
+4. Recoil
+5. Tailwind CSS
+6. Material UI
 
 ## Getting Started
 

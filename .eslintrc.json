@@ -1,14 +1,42 @@
 {
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
   "extends": [
     "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
-    "prettier"
+    "@typescript-eslint",
+    "prettier" // To prevent conflicts with eslint
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "import",
+    "@typescript-eslint"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off", // import react 없이도 작동하도록
+    "@typescript-eslint/no-unused-vars": "error", // 사용하지 않는 변수를 에러로 인식
+    "@typescript-eslint/no-explicit-any": "error" // any 타입 정의를 에러로 인식
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    },
+    "react": {
+      "version": "latest"
+    }
   }
 }

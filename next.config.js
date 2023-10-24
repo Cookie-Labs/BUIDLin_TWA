@@ -3,7 +3,8 @@
      * @type {import('next').NextConfig}
      */
     const nextConfig = {
-      /* config options here */
+      reactStrictMode: true, // react <React.StrictMode>
+      swcMinify: true, // like Terser
     };
     return nextConfig;
 // };

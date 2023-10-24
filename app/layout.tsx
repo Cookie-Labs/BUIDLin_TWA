@@ -2,6 +2,7 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import RecoilRootProvider from "@/providers/recoilRootProvider";
 
 export const metadata: Metadata = {
   title: "Next Starter Kit",
@@ -14,7 +15,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html lang="en">
       <body>
         <h1>
           <Image
@@ -26,7 +27,7 @@ export default async function RootLayout({
           />
           <Link href="/">HOME</Link>
         </h1>
-        {children}
+        <RecoilRootProvider>{children}</RecoilRootProvider>
       </body>
     </html>
   );

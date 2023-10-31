@@ -11,7 +11,8 @@
     "airbnb",
     "airbnb-typescript",
     "@typescript-eslint",
-    "prettier" // To prevent conflicts with eslint
+    "prettier", // To prevent conflicts with eslint
+    "plugin:tailwindcss/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [

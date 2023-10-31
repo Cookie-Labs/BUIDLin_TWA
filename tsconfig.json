@@ -57,8 +57,9 @@
       "@/app/*": ["app/*"],
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
+      "@/providers/*": ["providers/*"],
       "@/utils/*": ["utils/*"],
-      "@/providers/*": ["providers/*"]
+      "@/states/*": ["states/*"]
     },                                        /* 'baseUrl'를 기준으로 불러올 모듈의 위치를 재지정하는 엔트리 시리즈 */
     "esModuleInterop": true,                  /* 모든 imports에 대한 namespace 생성을 통해 CommonJS와 ES Modules 간의 상호 운용성이 생기게할 지 여부,  'allowSyntheticDefaultImports'를 암시적으로 승인합니다. */
     // "rootDirs": [],                        /* 결합된 컨텐츠가 런타임에서의 프로젝트 구조를 나타내는 루트 폴더들의 목록 */

@@ -5,7 +5,6 @@
 3. ESLint
 4. Recoil
 5. Tailwind CSS
-6. Material UI
 
 ## Getting Started
 

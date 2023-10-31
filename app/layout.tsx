@@ -1,12 +1,30 @@
-import "./globals.css";
-import Link from "next/link";
-import Image from "next/image";
-import type { Metadata } from "next";
-import RecoilRootProvider from "@/providers/recoilRootProvider";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Open_Sans, Roboto_Mono } from 'next/font/google';
+
+import RecoilRootProvider from '@/providers/recoilRootProvider';
+import NextThemeProvider from '@/providers/themeProvider';
+
+const openSans = Open_Sans({
+  // default font
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const robotoMono = Roboto_Mono({
+  // variable font
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--roboto',
+});
+
+export const cls = (...classnames: string[]) => {
+  return classnames.join(' ');
+};
 
 export const metadata: Metadata = {
-  title: "Next Starter Kit",
-  description: "next starter kit",
+  title: 'Next StartKit',
+  description: 'This is the next start kit',
 };
 
 export default async function RootLayout({
@@ -15,19 +33,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cls(openSans.className, robotoMono.variable)}>
       <body>
-        <h1>
-          <Image
-            src="/next.svg"
-            alt="test image"
-            width={100}
-            height={30}
-            priority
-          />
-          <Link href="/">HOME</Link>
-        </h1>
-        <RecoilRootProvider>{children}</RecoilRootProvider>
+        <RecoilRootProvider>
+          <NextThemeProvider>{children}</NextThemeProvider>
+        </RecoilRootProvider>
       </body>
     </html>
   );

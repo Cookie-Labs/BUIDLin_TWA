@@ -15,8 +15,8 @@ const config: Config = {
   important: 'body', // "#__next",
   theme: {
     screens: {
-      sm: '576px',
-      'sm-max': { max: '576px' },
+      sm: '576px',  // 해당 사이즈 외에서 작동
+      'sm-max': { max: '576px' }, // 해당 사이즈 내에서 작동
       md: '768px',
       'md-max': { max: '768px' },
       lg: '992px',

@@ -132,6 +132,10 @@ const config: Config = {
       72: '18rem',
       80: '20rem',
       96: '24rem',
+      topbarH: '3.75rem',
+      footerH: '16.5rem',
+      sidebarW: '20rem',
+      contentH: 'calc(100vh - 20.25rem)',
     },
     opacity: {
       '0': '0',
@@ -146,7 +150,7 @@ const config: Config = {
       fontFamily: {
         sans: [...defaultTheme.fontFamily.sans], // 문자의 끝 부분에 장식이 없는 선
         serif: [...defaultTheme.fontFamily.serif], // 문자의 끝 부분에 장식되어 있는 부가적인 짧은 선
-        mono: ["var(--roboto)", ...defaultTheme.fontFamily.mono], // 글자의 폭이 같은 글꼴
+        mono: ['var(--roboto)', ...defaultTheme.fontFamily.mono], // 글자의 폭이 같은 글꼴
       },
       aspectRatio: {
         '4/3': '4 / 3',
@@ -157,6 +161,7 @@ const config: Config = {
         DEFAULT: '.25rem',
         lg: '.5rem',
         full: '9999px',
+        circle: '50%',
       },
     },
   },

@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 
 export const userSidebar = atom({
   key: 'systemUserState/userSidebar',
-  default: sessionStorage.getItem('_sidebar'),
+  default: false,
 });
 
 export const userSystemState = selector({

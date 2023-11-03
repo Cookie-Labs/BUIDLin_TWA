@@ -134,8 +134,10 @@ const config: Config = {
       96: '24rem',
       topbarH: '3.75rem',
       footerH: '16.5rem',
+      bottomMenuH: '8rem',
       sidebarW: '20rem',
-      contentH: 'calc(100vh - 20.25rem)',
+      contentHWeb: 'calc(100vh - 20.25rem)',
+      contentHMobile: 'calc(100vh - 11.75rem)',
     },
     opacity: {
       '0': '0',

@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import { Open_Sans, Roboto_Mono } from 'next/font/google';
 
 import RecoilRootProvider from '@/providers/recoilRootProvider';
-import NextThemeProvider from '@/providers/themeProvider';
+import ThemeProvider from '@/providers/themeProvider';
+import CommonLayout from '@/components/common-layout';
 
 const openSans = Open_Sans({
   // default font
@@ -36,7 +37,9 @@ export default async function RootLayout({
     <html lang="en" className={cls(openSans.className, robotoMono.variable)}>
       <body>
         <RecoilRootProvider>
-          <NextThemeProvider>{children}</NextThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <CommonLayout>{children}</CommonLayout>
+          </ThemeProvider>
         </RecoilRootProvider>
       </body>
     </html>

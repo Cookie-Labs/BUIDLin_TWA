@@ -11,7 +11,8 @@ const MenuButtons = () => {
       {routes.map((route) => {
         return (
           <button
-            className="cursor-pointer hover:scale-110 active:scale-100 hover:text-gray08"
+            key={route.name}
+            className="cursor-pointer hover:scale-110 hover:text-gray08 active:scale-100"
             onClick={() => {
               router.push(route.path);
             }}

@@ -35,6 +35,7 @@ export default function Sidebar() {
         {routes.map((route) => {
           return (
             <button
+              key={route.name} 
               className="flex cursor-pointer items-center justify-center gap-2 duration-100 hover:scale-110 hover:text-gray08 active:scale-100"
               onClick={() => {
                 router.push(route.path);

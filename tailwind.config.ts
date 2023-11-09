@@ -31,7 +31,7 @@ const config: Config = {
       '4xl-max': { max: '1850px' },
     },
     fontSize: {
-      // 사이즈와 색상은 text
+      // size와 color와 align은 text
       xs: '0.5rem', // 8px
       sm: '0.75rem', // 12px
       base: '0.875rem', // 14px
@@ -45,7 +45,7 @@ const config: Config = {
       bigTitle: '5rem', // 80px
     },
     fontWeight: {
-      // 두께와 패밀리는 font
+      // weight와 family는 font
       thin: '100',
       extraLight: '200',
       light: '300',

@@ -14,9 +14,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="align-center flex flex-col justify-center">
-      <h2>Something went wrong!</h2>
-      <button onClick={() => reset()}>Try again</button>
+    <div className="flex min-h-[100vh] max-w-[100vw] flex-col items-center justify-center gap-12 bg-primary">
+      <span className="text-title">Something went wrong!</span>
+      <button
+        className="cursor-pointer rounded-2xl bg-gray14 px-10 py-5 text-gray10 duration-200 hover:scale-105 hover:text-white active:scale-100"
+        onClick={() => reset()}
+      >
+        Try again
+      </button>
     </div>
   );
 }

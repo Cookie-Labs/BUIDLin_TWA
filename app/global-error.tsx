@@ -16,9 +16,29 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <div className="align-center flex flex-col justify-center">
-          <h2>Something went wrong!</h2>
-          <button onClick={() => reset()}>Try again</button>
+        <div
+          style={{
+            display: 'flex',
+            minHeight: '100vh',
+            maxWidth: '100vw',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span style={{ fontSize: '3.25rem' }}>Something went wrong!</span>
+          <button
+            style={{
+              cursor: 'pointer',
+              borderRadius: '1rem',
+              backgroundColor: '#242424',
+              padding: '1.25rem 2.5rem',
+              color: '#6F6F6F',
+            }}
+            onClick={() => reset()}
+          >
+            Try again
+          </button>
         </div>
       </body>
     </html>

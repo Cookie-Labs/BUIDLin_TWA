@@ -18,7 +18,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
     >
       <div className="aspect-[1/0.56145] w-full">
         <Image
-          src={eventItem.posterImgUrl}
+          src={eventItem.hostImgUrl}
           alt="event image url"
           priority
           style={{
@@ -49,13 +49,15 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
               width={1000}
               height={1000}
             />
-            <span className="text-white font-medium text-[1.6rem]">{eventItem.host}</span>
+            <span className="text-[1.6rem] font-medium text-white">
+              {eventItem.host}
+            </span>
           </div>
           <div />
-          <span className="line-clamp-1 w-full text-left text-[1.6rem] font-semiBold text-white">
+          <span className="line-clamp-1 max-w-full pb-0.5 text-left text-[1.6rem] font-semiBold text-white">
             {eventItem.title}
           </span>
-          <span className="line-clamp-2 w-full text-left text-[1.2rem] font-regular text-gray10">
+          <span className="line-clamp-2 max-w-full pb-0.5 text-left text-[1.2rem] font-regular text-gray10">
             {eventItem.description}
           </span>
         </div>

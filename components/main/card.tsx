@@ -8,7 +8,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
   const router = useRouter();
 
   const handleEventDetailClick = () => {
-    router.push(`/event-detail?id=${eventItem.id}`);
+    router.push(`/event-detail/${eventItem.id}`);
   };
 
   return (

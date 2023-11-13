@@ -3,31 +3,113 @@
     "id": "d154475d-63db-43ca-945f-2968561c6077",
     "posterImgUrl": "/images/event1Image.png",
     "host": "Dayk Jang",
-    "title": "The 1st Korea-Japan Hackathon",
-    "country": "Korea",
+    "hostImgUrl": "/images/event1Image.png",
+    "title": "Global College Startup Impact Hackathon",
+    "description": "The first hackathon hosted by Coconet will focus on 'Ideas Using AI.' We encourage participants to register as soon as possible.",
+    "award": [
+      {
+        "rank": "Grand Prize",
+        "teamCount": "1",
+        "prize": "3,000,000KRW",
+        "emoji": "🥇"
+      },
+      {
+        "rank": "Excellent Prize",
+        "teamCount": "2",
+        "prize": "1,500,000KRW",
+        "emoji": "🥈"
+      },
+      {
+        "rank": "Encouragement Prize",
+        "teamCount": "3",
+        "prize": "1,000,000KRW",
+        "emoji": "🥉"
+      }
+    ],
+    "telegramLink": "",
+    "country": "Republic of Korea",
     "location": {
-      "address": "",
+      "address": "495, Bokjeong-dong, Sujeong-gu, Seongnam-si, Gyeonggi-do",
       "latitude": 0,
       "longitude": 0
     },
-    "schedule": [1703980800000, 1704178800000],
-    "description": "The first hackathon hosted by Coconet will focus on 'Ideas Using AI.' We encourage participants to register as soon as possible.",
-    "telegramLink": "",
+    "schedule": [
+      {
+        "date": 1703808000000,
+        "programs": [
+          {
+            "time": "13:00 ~ 13:30",
+            "title": "Registration & Booth Networking",
+            "emoji": "✍"
+          },
+          {
+            "time": "13:30 ~ 13:45",
+            "title": "Introduction to GCS Impact Hackathon",
+            "emoji": "🧑‍🏫"
+          },
+          { "time": "13:45 ~ 14:15", "title": "Keynote Speech", "emoji": "📣" },
+          { "time": "14:15 ~ 14:30", "title": "Coffee Break", "emoji": "☕️" },
+          {
+            "time": "14:30 ~ 17:00",
+            "title": "IR Pitching (7-minute presentation, 3-minute Q&A",
+            "emoji": "💁"
+          },
+          {
+            "time": "17:00 ~ 18:30",
+            "title": "Networking Session",
+            "emoji": "👋"
+          },
+          {
+            "time": "18:30 ~ 20:00",
+            "title": "Impact Session & Team Building",
+            "emoji": "👫"
+          },
+          {
+            "time": "20:00 ~",
+            "title": "Hackathon (Developing sustainable business model to tackle common social issues in both Korea and Japan)",
+            "emoji": "🧑‍💻"
+          }
+        ]
+      },
+      {
+        "date": 1703937600000,
+        "programs": [
+          {
+            "time": "~ 16:00",
+            "title": "Hackathon (Developing sustainable business model to tackle common social issues in both Korea and Japan)",
+            "emoji": "🧑‍💻"
+          },
+          {
+            "time": "16:00 ~ 17:00",
+            "title": "GCS -> Kakao Enterprise",
+            "emoji": "🚌"
+          },
+          { "time": "16:00 ~ 17:00", "title": "Coffee Break", "emoji": "☕️" },
+          {
+            "time": "17:00 ~ 18:30",
+            "title": "Hackathon Pitching (5-minute presentation, 2-minute Q&A",
+            "emoji": "💁"
+          },
+          { "time": "18:30 ~ 19:00", "title": "Award Ceremony", "emoji": "🏆" },
+          { "time": "19:00 ~ 20:00", "title": "Culture Night", "emoji": "🍚" }
+        ]
+      }
+    ],
     "speakers": [
       {
-        "imgUrl": "",
+        "imgUrl": "/images/event1Image.png",
         "name": "Cheon",
-        "position": ""
+        "position": "Event coordination"
       },
       {
-        "imgUrl": "",
+        "imgUrl": "/images/event1Image.png",
         "name": "Dayk Jang",
-        "position": ""
+        "position": "Hackathon organizer"
       },
       {
-        "imgUrl": "",
+        "imgUrl": "/images/event1Image.png",
         "name": "Choi",
-        "position": ""
+        "position": "Hackathon organizer"
       }
     ]
   }

@@ -13,7 +13,7 @@ const SponsorSection = ({
           Sponsors of this event.
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-[2.9rem]">
+      <div className="grid grid-cols-3 gap-[2.9rem] items-start justify-center">
         {sponsors.map((s) => {
           return (
             <div

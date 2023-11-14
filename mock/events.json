@@ -105,19 +105,29 @@
     ],
     "speakers": [
       {
-        "imgUrl": "/images/event1Image.png",
+        "imgUrl": "/images/event1_speaker1Image.png",
         "name": "Cheon",
         "position": "Event coordination"
       },
       {
-        "imgUrl": "/images/event1Image.png",
+        "imgUrl": "/images/event1_speaker2Image.png",
         "name": "Dayk Jang",
         "position": "Hackathon organizer"
       },
       {
-        "imgUrl": "/images/event1Image.png",
+        "imgUrl": "/images/event1_speaker3Image.png",
         "name": "Choi",
         "position": "Hackathon organizer"
+      }
+    ],
+    "sponsors": [
+      {
+        "imgUrl": "/images/event1_sponsor1Image.png",
+        "name": "Gachon University"
+      },
+      {
+        "imgUrl": "/images/event1_sponsor2Image.png",
+        "name": "WFUNA"
       }
     ]
   }

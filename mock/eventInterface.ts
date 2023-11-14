@@ -22,9 +22,9 @@ export interface EventForm {
     latitude?: number;
     longitude?: number;
   };
-  schedule?: {
+  schedule: {
     date: number;
-    programs: {
+    programs?: {
       time: string;
       title: string;
       emoji: string;

@@ -10,23 +10,31 @@
       {
         "rank": "Grand Prize",
         "teamCount": "1",
-        "prize": "3,000,000KRW",
+        "prize": 3000000,
+        "currency": "KRW",
         "emoji": "🥇"
       },
       {
         "rank": "Excellent Prize",
         "teamCount": "2",
-        "prize": "1,500,000KRW",
+        "prize": 1500000,
+        "currency": "KRW",
         "emoji": "🥈"
       },
       {
         "rank": "Encouragement Prize",
         "teamCount": "3",
-        "prize": "1,000,000KRW",
+        "prize": 1000000,
+        "currency": "KRW",
         "emoji": "🥉"
       }
     ],
-    "telegramLink": "",
+    "telegram": [
+      {
+        "name": "Hackathon Group",
+        "link": "https://t.me/BUIDLin_Testing_Bot"
+      }
+    ],
     "country": "Republic of Korea",
     "location": {
       "address": "495, Bokjeong-dong, Sujeong-gu, Seongnam-si, Gyeonggi-do",

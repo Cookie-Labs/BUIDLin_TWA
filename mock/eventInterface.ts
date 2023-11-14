@@ -8,10 +8,14 @@ export interface EventForm {
   award?: {
     rank: string;
     teamCount: string;
-    prize: string;
+    prize: number;
+    currency: string;
     emoji: string;
   }[];
-  telegramLink?: string;
+  telegram?: {
+    name: string;
+    link: string;
+  }[];
   country: string;
   location: {
     address: string;
@@ -26,9 +30,13 @@ export interface EventForm {
       emoji: string;
     }[];
   }[];
-  speakers: {
+  speakers?: {
     imgUrl: string;
     name: string;
     position: string;
   }[];
+  sponsors?: {
+    imgUrl: string;
+    name: string;
+  }[]
 }

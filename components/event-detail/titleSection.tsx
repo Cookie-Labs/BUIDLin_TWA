@@ -14,7 +14,7 @@ const TitleSection = ({
   return (
     <div className="flex h-auto w-full flex-col items-start justify-center gap-[1.6rem]">
       <span className="text-[2.4rem] font-semiBold text-white">{title}</span>
-      <div className="flex items-center justify-center gap-[1.2rem]">
+      <div className="flex items-center justify-start gap-[1.2rem]">
         <Image
           src={hostImgUrl}
           alt="host image url"

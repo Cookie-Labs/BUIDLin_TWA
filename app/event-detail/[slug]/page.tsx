@@ -27,7 +27,7 @@ export default function EventDetailPage({
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-start gap-[3.2rem]">
+    <div className="relative flex min-h-[100vh] max-w-[100%] flex-col items-center justify-start gap-[3.2rem] bg-primary p-[1.6rem] pt-[2.4rem]">
       <PosterSection posterImgUrl={event.posterImgUrl} />
       <TitleSection
         title={event.title}
@@ -46,8 +46,8 @@ export default function EventDetailPage({
       {event.schedule[0].programs ? (
         <ProgramSection schedule={event.schedule} />
       ) : null}
-      {event.speakers ? <SpeakerSection speakers={event.speakers}/> : null}
-      {event.sponsors ? <SponsorSection sponsors={event.sponsors}/> : null}
+      {event.speakers ? <SpeakerSection speakers={event.speakers} /> : null}
+      {event.sponsors ? <SponsorSection sponsors={event.sponsors} /> : null}
       <ScrollToTopButton />
     </div>
   );

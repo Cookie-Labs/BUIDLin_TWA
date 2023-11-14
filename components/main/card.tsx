@@ -18,7 +18,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
     >
       <div className="aspect-[1/0.56145] w-full">
         <Image
-          src={eventItem.hostImgUrl}
+          src={eventItem.posterImgUrl}
           alt="event image url"
           priority
           style={{
@@ -38,7 +38,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
           </div>
           <div className="flex items-center justify-center gap-[1.2rem]">
             <Image
-              src={eventItem.posterImgUrl}
+              src={eventItem.hostImgUrl}
               alt="host image url"
               style={{
                 width: '3.2rem',

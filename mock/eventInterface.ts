@@ -38,5 +38,15 @@ export interface EventForm {
   sponsors?: {
     imgUrl: string;
     name: string;
-  }[]
+  }[];
+  applyForm?: {
+    title: string;
+    introduction?: string;
+    questions?: {
+      question: string;
+      type: 'open' | 'binary' | 'single' | 'multiple' | 'consent';
+      required: boolean;
+      options?: string[];
+    }[];
+  }[];
 }

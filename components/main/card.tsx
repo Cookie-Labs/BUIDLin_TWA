@@ -23,7 +23,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
           priority
           style={{
             width: '100%',
-            height: 'auto',
+            height: '100%',
             borderRadius: '1.6rem 1.6rem 0 0',
             objectFit: 'cover',
           }}
@@ -31,9 +31,9 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
           height={1000}
         />
       </div>
-      <div className="aspect-[1/0.38827] w-full rounded-b-[1.6rem] bg-secondary p-[1.6rem] pb-[2.1rem]">
-        <div className="relative flex h-full w-full flex-col items-start justify-between">
-          <div className="absolute right-0 top-0 flex aspect-[1/0.28235] w-[8.5rem] items-center justify-center rounded-[10rem] bg-gray13">
+      <div className="aspect-[1/0.38827] w-full rounded-b-[1.6rem] bg-secondary px-[1.6rem]">
+        <div className="relative flex h-full w-full flex-col items-start justify-evenly">
+          <div className="absolute right-0 top-[1.6rem] flex aspect-[1/0.28235] w-[8.5rem] items-center justify-center rounded-[10rem] bg-gray13">
             {/* TODO: change participants */}
             <span className="text-md font-semiBold">Participants</span>
           </div>

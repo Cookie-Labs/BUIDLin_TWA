@@ -38,22 +38,22 @@ export interface SponsorsForm {
   name: string;
 }
 
+export interface QuestionForm {
+  question: string;
+  type: 'open' | 'binary' | 'single' | 'multiple' | 'hidden' | 'consent';
+  required: boolean;
+  options?: string[];
+  hiddenQuestion?: QuestionForm[];
+}
+
 export interface ApplyForm {
   title: string;
   introduction?: string;
-  link?: string[];
-  questions?: {
-    question: string;
-    type: 'open' | 'binary' | 'single' | 'multiple' | 'hidden' | 'consent';
-    required: boolean;
-    options?: string[];
-    hiddenQuestion?: {
-      question: string;
-      type: 'open' | 'binary' | 'single' | 'multiple' | 'hidden' | 'consent';
-      required: boolean;
-      options?: string[];
-    }[];
+  link?: {
+    url: string;
+    name?: string;
   }[];
+  questions?: QuestionForm[];
 }
 
 export interface EventForm {

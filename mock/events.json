@@ -140,7 +140,10 @@
       {
         "title": "Global College Startups Impact Hackathon Application Form",
         "introduction": "Thank you for applying to the Global College Startups Impact Hackathon!\n\nThe Global College Startups Impact Hackathon (GCSIH) is a global program that empowers college entrepreneurs, encouraging them to tackle social issues and develop innovative business models that can also contribute to the achievement of Sustainable Development Goals (SDGs).\n\nApplicants will form international teams and create a sustainable business model to address shared social challenges in both Korea and Japan.\n\nFor more information, please visit our website:",
-        "link": ["https://www.wfuna.or.kr/2023_impacthackathon_kor", "https://www.wfuna.or.kr/2023_impacthackathon_eng"]
+        "link": [
+          { "url": "https://www.wfuna.or.kr/2023_impacthackathon_kor", "name": "A Korean-Language Website" },
+          { "url": "https://www.wfuna.or.kr/2023_impacthackathon_eng", "name": "An English-Language Website" }
+        ]
       },
       {
         "title": "General Information",
@@ -207,14 +210,28 @@
             "question": "What describes you best? (Multiple answers)",
             "type": "multiple",
             "required": true,
-            "options": ["Analyzer", "Collaborator", "Director", "Innovator", "Networker", "Observer", "Risk-taker", "Supporter"]
+            "options": [
+              "Analyzer",
+              "Collaborator",
+              "Director",
+              "Innovator",
+              "Networker",
+              "Observer",
+              "Risk-taker",
+              "Supporter"
+            ]
           }
         ]
       },
       {
         "title": "SDGs background information",
         "introduction": "SDGs are the blueprint to achieve a better and more sustainable future for all. They address the global challenges we face, including those related to poverty, inequality, climate, environmental degradation, prosperity, and peace and justice. The Goals interconnect and in order to leave no one behind, it is important that we achieve each Goals and target by 2030.\n\nPlease explain which of the 17 Goals you think needs immediate action.(SDGs list, multiple answers)\n\nRefer to the following link:",
-        "link": ["https://worldtop20.org/global-movement/?gad=1&gclid=EAIaIQobChMIn9eBzMSkggMV8cFMAh3CiQZ0EAAYASAAEgJLu_D_BwE"],
+        "link": [
+          {
+            "url": "https://worldtop20.org/global-movement/?gad=1&gclid=EAIaIQobChMIn9eBzMSkggMV8cFMAh3CiQZ0EAAYASAAEgJLu_D_BwE",
+            "name": "Reference Site"
+          }
+        ],
         "questions": [
           {
             "question": "Do you know about SDGs?",

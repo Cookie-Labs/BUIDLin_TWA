@@ -9,6 +9,7 @@ import InformationSection from '@/components/event-detail/informationSection';
 import ProgramSection from '@/components/event-detail/programSection';
 import SpeakerSection from '@/components/event-detail/speakerSection';
 import SponsorSection from '@/components/event-detail/sponsorSection';
+import ApplyButton from '@/components/event-detail/applyButton';
 import ScrollToTopButton from '@/components/scroll-to-top-button';
 import NotFound from './not-found';
 
@@ -48,6 +49,7 @@ export default function EventDetailPage({
       ) : null}
       {event.speakers ? <SpeakerSection speakers={event.speakers} /> : null}
       {event.sponsors ? <SponsorSection sponsors={event.sponsors} /> : null}
+      {event.applyForm ? <ApplyButton eventId={event.id} /> : null}
       <ScrollToTopButton />
     </div>
   );

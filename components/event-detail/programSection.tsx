@@ -1,17 +1,7 @@
 import { format } from 'date-fns';
+import { ScheduleForm } from '@/mock/eventInterface';
 
-const ProgramSection = ({
-  schedule,
-}: {
-  schedule: {
-    date: number;
-    programs?: {
-      time: string;
-      title: string;
-      emoji: string;
-    }[];
-  }[];
-}) => {
+const ProgramSection = ({ schedule }: { schedule: ScheduleForm[] }) => {
   return (
     <div className="flex h-auto w-full flex-col items-start justify-center gap-[2.4rem]">
       <div className="flex h-auto w-full flex-col items-start justify-center gap-[0.8rem]">
@@ -27,7 +17,9 @@ const ProgramSection = ({
               key={s.date}
               className="flex h-auto w-full flex-col items-start justify-center gap-[1.6rem]"
             >
-              <span className="text-[1.6rem] font-semiBold text-white">{format(new Date(s.date), 'MMMM do')}</span>
+              <span className="text-[1.6rem] font-semiBold text-white">
+                {format(new Date(s.date), 'MMMM do')}
+              </span>
               {s.programs
                 ? s.programs.map((p, i) => {
                     return (

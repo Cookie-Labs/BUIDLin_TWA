@@ -1,4 +1,5 @@
 import { formatSchedule } from '@/utils/parser';
+import { LocationForm } from '@/mock/eventInterface';
 
 const InformationSection = ({
   country,
@@ -7,11 +8,7 @@ const InformationSection = ({
   endDate,
 }: {
   country: string;
-  location: {
-    address: string;
-    latitude?: number;
-    longitude?: number;
-  };
+  location: LocationForm;
   startDate: number;
   endDate: number;
 }) => {

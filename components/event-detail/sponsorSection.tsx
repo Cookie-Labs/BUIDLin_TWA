@@ -1,10 +1,7 @@
 import Image from 'next/image';
+import { SponsorsForm } from '@/mock/eventInterface';
 
-const SponsorSection = ({
-  sponsors,
-}: {
-  sponsors: { imgUrl: string; name: string }[];
-}) => {
+const SponsorSection = ({ sponsors }: { sponsors: SponsorsForm[] }) => {
   return (
     <div className="flex h-auto w-full flex-col items-start justify-center gap-[2.4rem]">
       <div className="flex h-auto w-full flex-col items-start justify-center gap-[0.8rem]">

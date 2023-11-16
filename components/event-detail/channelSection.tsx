@@ -1,12 +1,9 @@
 'use client';
 
 import { BiRightArrowAlt } from 'react-icons/bi';
+import { TelegramForm } from '@/mock/eventInterface';
 
-const ChannelSection = ({
-  telegram,
-}: {
-  telegram: { name: string; link: string; emoji: string }[];
-}) => {
+const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
   const handleButtonClick = (url: string) => {
     window.open(url, '_blank');
   };

@@ -1,11 +1,11 @@
 'use client';
 
-import { BiLogoTelegram, BiRightArrowAlt } from 'react-icons/bi';
+import { BiRightArrowAlt } from 'react-icons/bi';
 
 const ChannelSection = ({
   telegram,
 }: {
-  telegram: { name: string; link: string }[];
+  telegram: { name: string; link: string; emoji: string }[];
 }) => {
   const handleButtonClick = (url: string) => {
     window.open(url, '_blank');
@@ -29,8 +29,10 @@ const ChannelSection = ({
                 handleButtonClick(t.link);
               }}
             >
-              <div className="flex h-[5rem] w-[5rem] cursor-pointer items-center justify-center rounded-circle bg-[#0084C6]">
-                <BiLogoTelegram className="h-1/2 w-auto text-white" />
+              <div className="flex h-[5rem] w-[5rem] items-center justify-center rounded-circle bg-[#0084C6]">
+                <span className="text-[3rem] font-regular text-white">
+                  {t.emoji}
+                </span>
               </div>
               <span className="text-[1.6rem] font-semiBold text-white">
                 {t.name}

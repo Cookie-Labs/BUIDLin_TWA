@@ -13,25 +13,26 @@ const SponsorSection = ({
           Sponsors of this event.
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-[2.9rem] items-start justify-center">
+      <div className="grid grid-cols-3 items-start justify-center gap-[2.9rem]">
         {sponsors.map((s) => {
           return (
             <div
               key={s.name}
               className="flex flex-col items-center justify-center gap-[0.8rem]"
             >
-              <div className='flex items-center justify-center w-[10rem] h-[10rem]'>
-              <Image
-                src={s.imgUrl}
-                alt={`${s.name} Image`}
-                style={{
-                  width: '10rem',
-                  height: 'auto',
-                  objectFit: 'cover',
-                }}
-                width={1000}
-                height={1000}
-              />
+              <div className="flex h-[10rem] w-[10rem] items-center justify-center">
+                <Image
+                  src={s.imgUrl}
+                  alt={`${s.name} Image`}
+                  style={{
+                    width: '10rem',
+                    height: 'auto',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                  }}
+                  width={1000}
+                  height={1000}
+                />
               </div>
               <span className="text-center text-[1.6rem] font-medium text-white">
                 {s.name}

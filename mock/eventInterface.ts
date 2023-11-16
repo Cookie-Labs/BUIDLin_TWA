@@ -15,6 +15,7 @@ export interface EventForm {
   telegram?: {
     name: string;
     link: string;
+    emoji: string;
   }[];
   country: string;
   location: {
@@ -42,11 +43,18 @@ export interface EventForm {
   applyForm?: {
     title: string;
     introduction?: string;
+    link?: string[];
     questions?: {
       question: string;
-      type: 'open' | 'binary' | 'single' | 'multiple' | 'consent';
+      type: 'open' | 'binary' | 'single' | 'multiple' | 'hidden' | 'consent';
       required: boolean;
       options?: string[];
+      hiddenQuestion?: {
+        question: string;
+        type: 'open' | 'binary' | 'single' | 'multiple' | 'hidden' | 'consent';
+        required: boolean;
+        options?: string[];
+      }[];
     }[];
   }[];
 }

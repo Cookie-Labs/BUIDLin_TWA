@@ -13,7 +13,7 @@ const ApplyButton = ({ eventId }: { eventId: string }) => {
 
   return (
     <button
-      className="flex h-[6rem] w-full cursor-pointer items-center justify-center rounded-[1.2rem] bg-[#2E7BED] duration-200 hover:scale-105 active:scale-100"
+      className="flex h-[6rem] w-full cursor-pointer items-center justify-center rounded-[1.2rem] bg-blue07 duration-200 hover:scale-105 active:scale-100"
       onClick={handleApplyButtonClick}
     >
       <span className="text-center font-[semiBold] text-[1.8rem] text-white">

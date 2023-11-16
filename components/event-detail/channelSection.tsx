@@ -26,7 +26,7 @@ const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
                 handleButtonClick(t.link);
               }}
             >
-              <div className="flex h-[5rem] w-[5rem] items-center justify-center rounded-circle bg-[#0084C6]">
+              <div className="flex h-[5rem] w-[5rem] items-center justify-center rounded-circle bg-blue08">
                 <span className="text-[3rem] font-regular text-white">
                   {t.emoji}
                 </span>

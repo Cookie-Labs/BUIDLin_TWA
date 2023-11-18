@@ -10,7 +10,7 @@ const SpeakerSection = ({ speakers }: { speakers: SpeakersForm[] }) => {
           These are the keynote speakers for this event.
         </span>
       </div>
-      <div className="grid grid-cols-3 items-start justify-center gap-[2.9rem]">
+      <div className="w-full h-auto grid grid-cols-3 items-start justify-center gap-[2.9rem]">
         {speakers.map((s) => {
           return (
             <div

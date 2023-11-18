@@ -5,10 +5,16 @@
 
 import { useRouter } from 'next/navigation';
 
+import { useSetRecoilState } from 'recoil';
+import { myAPPStep } from '@/states/formUserState';
+
 const ApplyButton = ({ eventId }: { eventId: string }) => {
   const router = useRouter();
+  const setMyAPPStep = useSetRecoilState(myAPPStep);
+
   const handleApplyButtonClick = () => {
     router.push(`/event-apply/${eventId}`);
+    setMyAPPStep(0);
   };
 
   return (

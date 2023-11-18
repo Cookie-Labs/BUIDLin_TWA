@@ -39,7 +39,9 @@ const MainApplyForm = ({ form }: { form: ApplyForm }) => {
           );
         })}
       </div>
-      <TelegramOAuth />
+      <div className='flex h-auto w-auto items-center justify-center mb-[3.2rem]'>
+        <TelegramOAuth />
+      </div>
     </div>
   );
 };

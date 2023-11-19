@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { EventForm } from '@/mock/eventInterface';
 import { eventsInProgress } from '@/mock/events';
@@ -25,6 +25,7 @@ export default function EventApplyPage({
   params: { slug: string };
 }) {
   const tab = useRecoilValue(myAPPStep);
+  const [allChecked, setAllChecked] = useState(false);
 
   // TODO:나중에 백엔드로 변경
   const event: EventForm | undefined = eventsInProgress.find(
@@ -41,8 +42,15 @@ export default function EventApplyPage({
         <>
           {tab === 0 && (
             <>
-              <MainApplyForm form={event.applyForm[0]} />
-              <NextButton type="Next" />
+              <MainApplyForm
+                form={event.applyForm[0]}
+                setAllChecked={setAllChecked}
+              />
+              <NextButton
+                type="Next"
+                allChecked={allChecked}
+                setAllChecked={setAllChecked}
+              />
             </>
           )}
           {0 < tab &&
@@ -51,10 +59,18 @@ export default function EventApplyPage({
               if (tab === i + 1) {
                 return (
                   <Fragment key={i}>
-                    <SubApplyForm section={tab} form={a} />
+                    <SubApplyForm
+                      section={tab}
+                      form={a}
+                      setAllChecked={setAllChecked}
+                    />
                     <div className="flex h-auto w-full items-center justify-center gap-[1.6rem]">
                       <BackButton />
-                      <NextButton type="Next" />
+                      <NextButton
+                        type="Next"
+                        allChecked={allChecked}
+                        setAllChecked={setAllChecked}
+                      />
                     </div>
                   </Fragment>
                 );
@@ -62,10 +78,18 @@ export default function EventApplyPage({
             })}
           {tab === event.applyForm.length - 1 && (
             <>
-              <ConsentApplyForm section={tab} form={event.applyForm[tab]} />
+              <ConsentApplyForm
+                section={tab}
+                form={event.applyForm[tab]}
+                setAllChecked={setAllChecked}
+              />
               <div className="flex h-auto w-full items-center justify-center gap-[1.6rem]">
                 <BackButton />
-                <NextButton type="Submit" />
+                <NextButton
+                  type="Submit"
+                  allChecked={allChecked}
+                  setAllChecked={setAllChecked}
+                />
               </div>
             </>
           )}

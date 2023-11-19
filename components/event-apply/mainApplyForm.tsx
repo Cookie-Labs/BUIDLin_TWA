@@ -1,8 +1,31 @@
+'use client';
+
+import { useEffect } from 'react';
 import { TelegramOAuth } from '../telegram-oauth';
 import { ApplyForm } from '@/mock/eventInterface';
+import { useRecoilValue } from 'recoil';
+import { myTelegramData } from '@/states/formUserState';
 
-const MainApplyForm = ({ form }: { form: ApplyForm }) => {
-  // TODO: OAuth를 통해 로그인하고 받아온 결과 및 submit 했는지를 나타내는 데이터를 전역 변수에 저장 후 이미 되어 있으면 next 불가.
+const MainApplyForm = ({
+  form,
+  setAllChecked,
+}: {
+  form: ApplyForm;
+  setAllChecked: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const myTelegram = useRecoilValue(myTelegramData);
+  const myTelegramJSON = myTelegram !== null ? JSON.parse(myTelegram) : null;
+
+  console.log(myTelegramJSON);
+
+  useEffect(() => {
+    if (myTelegramJSON === null) {
+      setAllChecked(false);
+    } else {
+      setAllChecked(true);
+    }
+  }, [myTelegramJSON]);
+
   const handleClickLink = (url: string) => {
     window.open(url, '_blank');
   };

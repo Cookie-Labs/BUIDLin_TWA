@@ -7,15 +7,20 @@ import EachQuestionForm from './eachQuestionForm';
 const ConsentApplyForm = ({
   section,
   form,
+  setAllChecked,
 }: {
   section: number;
   form: ApplyForm;
+  setAllChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   // TODO: fill을 데이터를 통해서 채우기
   const [fullAgree, setFullAgree] = useState(false);
-  const [eachAgree, setEachAgree] = useState<any>(
+  const [eachAgree, setEachAgree] = useState<boolean[]>(
     Array(form.questions?.length).fill(false),
   );
+  const eachRequired = form.questions?.map((question) => question.required);
+
+  console.log(eachAgree);
 
   const handleClickLink = (url: string) => {
     window.open(url, '_blank');
@@ -30,6 +35,18 @@ const ConsentApplyForm = ({
     const allQuestionsAgreed = eachAgree.every(
       (value: boolean) => value === true,
     );
+
+    let allChecked = true;
+    for (let i = 0; i < eachAgree.length; i++) {
+      if (eachRequired?.[i]) {
+        if (eachAgree[i] === false) {
+          allChecked = false;
+          break;
+        }
+      }
+    }
+
+    setAllChecked(allChecked);
     setFullAgree(allQuestionsAgreed);
   }, [eachAgree]);
 

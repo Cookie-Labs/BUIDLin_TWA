@@ -1,22 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ApplyForm } from '@/mock/eventInterface';
 import EachQuestionForm from './eachQuestionForm';
 
 const SubApplyForm = ({
   section,
   form,
+  setAllChecked,
 }: {
   section: number;
   form: ApplyForm;
+  setAllChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   // TODO: fill을 데이터를 통해서 채우기
-  const [eachAnswer, setEachAnswer] = useState<any>(
+  const [eachAnswer, setEachAnswer] = useState<any[]>(
     Array(form.questions?.length).fill(''),
   );
+  const eachRequired = form.questions?.map((question) => question.required);
 
   console.log(eachAnswer);
+
+  useEffect(() => {
+    let allChecked = true;
+    for (let i = 0; i < eachAnswer.length; i++) {
+      if (eachRequired?.[i]) {
+        if (eachAnswer[i] === '') {
+          allChecked = false;
+          break;
+        }
+      }
+    }
+
+    setAllChecked(allChecked);
+  }, [eachAnswer]);
 
   const handleClickLink = (url: string) => {
     window.open(url, '_blank');

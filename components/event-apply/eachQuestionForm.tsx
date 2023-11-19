@@ -1,4 +1,8 @@
-//TODO: hidden에 hidden 3중 중첩은 안됨
+//TODO: hidden bug
+// 1) 3중 중첩은 안됨
+// 2) hidden required 적용 안됨
+// 3) hidden required 부분 입력 후 지울 때 데이터 안사라짐
+// 4) 계속 map unique key 입력하라고 warning 뜸
 
 'use client';
 
@@ -17,10 +21,6 @@ const EachQuestionForm = ({
   const [userInput, setUserInput] = useState<any>(eachState);
   const [showHiddenQuestions, setShowHiddenQuestions] =
     useState<boolean>(false);
-
-  useEffect(() => {
-    setUserInput(eachState);
-  }, [eachState]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
@@ -47,12 +47,14 @@ const EachQuestionForm = ({
   };
 
   const handleHiddenButtonClick = (choice: string | undefined) => {
-    setUserInput([choice]);
-    setEachState([choice]);
     if (choice === each.options?.[0]) {
       setShowHiddenQuestions(true);
+      setUserInput([choice]);
+      setEachState('');
     } else {
       setShowHiddenQuestions(false);
+      setUserInput([choice]);
+      setEachState([choice]);
     }
   };
 
@@ -233,7 +235,19 @@ const EachQuestionForm = ({
                           const updatedEachAnswer = [...userInput];
                           updatedEachAnswer[i + 1] = value;
                           setUserInput(updatedEachAnswer);
-                          setEachState(updatedEachAnswer);
+                          
+                          let hiddenEachRequired = each.hiddenQuestion?.map((q) => q.required);
+                          for (let j = 0; j < (each.hiddenQuestion ? each.hiddenQuestion.length : 0); j++ ) {
+                            if (hiddenEachRequired?.[j]) {  // 히든 질문이 필수일 때
+                              if (updatedEachAnswer[j + 1] !== undefined) {  // 필수인 히든 질문을 입력했을 때
+                                setEachState(updatedEachAnswer);
+                              } else {  // 필수인 히든 질문을 입력하지 않았을 때
+                                setEachState('');
+                              }
+                            } else {  // 히든 질문이 필수가 아닐 때
+                              setEachState(updatedEachAnswer);
+                            }
+                          }
                         }}
                       />
                     </div>

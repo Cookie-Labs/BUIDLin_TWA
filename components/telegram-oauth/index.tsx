@@ -1,15 +1,29 @@
+import { useRecoilValue } from 'recoil';
+import { myTelegramData } from '@/states/formUserState';
 import TelegramLoginButton from 'telegram-login-button';
+import { TelegramOAuthResponse } from '@/states/formUserState';
 
 export const TelegramOAuth = () => {
-  const handleTelegramResponse = async (response: any) => {
-    console.log(response);
+  const myTelegram = useRecoilValue(myTelegramData);
+  const myTelegramJSON = myTelegram !== null ? JSON.parse(myTelegram) : null;
+
+  const handleTelegramResponse = async (response: TelegramOAuthResponse) => {
+    typeof window !== 'undefined'
+      ? sessionStorage.setItem('_telegramData', JSON.stringify(response))
+      : null;
   };
 
   return (
-    <TelegramLoginButton
-      dataOnauth={handleTelegramResponse}
-      botName="BUIDLin_Testing_Bot"
-      className="flex items-center justify-center rounded-md bg-blue08 text-center text-[1.4rem] font-medium text-white"
-    />
+    <>
+      {myTelegramJSON === null ? (
+        <TelegramLoginButton
+          dataOnauth={handleTelegramResponse}
+          botName="BUIDLin_Testing_Bot"
+          className="flex items-center justify-center"
+        />
+      ) : (
+        <div>Logged In!</div>
+      )}
+    </>
   );
 };

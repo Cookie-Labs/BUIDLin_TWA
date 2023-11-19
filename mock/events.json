@@ -139,10 +139,16 @@
     "applyForm": [
       {
         "title": "Global College Startups Impact Hackathon Application Form",
-        "introduction": "Thank you for applying to the Global College Startups Impact Hackathon!\n\nThe Global College Startups Impact Hackathon (GCSIH) is a global program that empowers college entrepreneurs, encouraging them to tackle social issues and develop innovative business models that can also contribute to the achievement of Sustainable Development Goals (SDGs).\n\nApplicants will form international teams and create a sustainable business model to address shared social challenges in both Korea and Japan.\n\nFor more information, please visit our website:",
+        "introduction": "Thank you for applying to the Global College Startups Impact Hackathon!\n\nThe Global College Startups Impact Hackathon (GCSIH) is a global program that empowers college entrepreneurs, encouraging them to tackle social issues and develop innovative business models that can also contribute to the achievement of Sustainable Development Goals (SDGs).\n\nApplicants will form international teams and create a sustainable business model to address shared social challenges in both Korea and Japan.\n\nPlease provide answers to all questions in English to qualify for the selection process.\n\nFor more information, please visit our website:",
         "link": [
-          { "url": "https://www.wfuna.or.kr/2023_impacthackathon_kor", "name": "A Korean-Language Website" },
-          { "url": "https://www.wfuna.or.kr/2023_impacthackathon_eng", "name": "An English-Language Website" }
+          {
+            "url": "https://www.wfuna.or.kr/2023_impacthackathon_kor",
+            "name": "A Korean-Language Website"
+          },
+          {
+            "url": "https://www.wfuna.or.kr/2023_impacthackathon_eng",
+            "name": "An English-Language Website"
+          }
         ]
       },
       {

@@ -8,7 +8,7 @@ const MainApplyForm = ({ form }: { form: ApplyForm }) => {
   };
 
   return (
-    <div className="flex h-auto w-full flex-col items-center justify-center gap-[3.2rem]">
+    <div className="mb-[3.2rem] flex h-auto w-full flex-col items-center justify-center gap-[3.2rem]">
       <span className="text-center text-[2.4rem] font-semiBold text-white">
         {form.title}
       </span>
@@ -39,9 +39,14 @@ const MainApplyForm = ({ form }: { form: ApplyForm }) => {
           );
         })}
       </div>
-      <div className='flex h-auto w-auto items-center justify-center mb-[3.2rem]'>
+      <div className="flex h-auto w-auto items-center justify-center">
         <TelegramOAuth />
       </div>
+      <span className="whitespace-pre-line text-[1.4rem] font-bold leading-8 text-gray08">
+        ※ You can save the submission form for the corresponding page each time
+        you press the "Next" button at the bottom. Start by pressing the
+        Telegram login button right above.
+      </span>
     </div>
   );
 };

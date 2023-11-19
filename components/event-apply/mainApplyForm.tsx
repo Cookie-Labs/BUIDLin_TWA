@@ -18,7 +18,7 @@ const MainApplyForm = ({
   console.log(myTelegram);
 
   useEffect(() => {
-    if (myTelegram?.id !== 0) {
+    if (myTelegram?.id === 0) {
       setAllChecked(false);
     } else {
       setAllChecked(true);

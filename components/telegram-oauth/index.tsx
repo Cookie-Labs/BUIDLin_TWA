@@ -17,6 +17,7 @@ export const TelegramOAuth = () => {
 
   const handleTelegramResponse = async (response: TelegramUser) => {
     setMyTelegram(response);
+    setLoggedIn(true);
   };
 
   return (

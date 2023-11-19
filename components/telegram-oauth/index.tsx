@@ -23,9 +23,10 @@ export const TelegramOAuth = () => {
   return (
     <>
       {loggedIn ? (
-        <div className="flex items-center justify-center">
-          {myTelegram?.id}
-          {myTelegram?.first_name}
+        <div className="bg-[#54a9eb] flex h-auto w-auto items-center justify-center rounded-circle px-[2.1rem] py-[0.9rem]">
+          <span className="text-[1.6rem] font-medium text-white text-center">
+            {myTelegram?.first_name} Logged In!
+          </span>
         </div>
       ) : (
         <TelegramLoginButton

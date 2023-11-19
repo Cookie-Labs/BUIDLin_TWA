@@ -1,24 +1,21 @@
-import { atom } from 'recoil';
+//TODO: 웹브라우저는 sessionStorage 가능하지만, telegramWebApp에서는 불가능하므로 cloudStorage 봐야함
 
-export interface TelegramOAuthResponse {
-  id?: number;
-  auth_date?: number;
-  last_name?: string;
-  first_name?: string;
-  username?: string;
-  hash?: string;
-  photo_url?: string;
-}
+import { atom } from 'recoil';
+import { TelegramUser } from 'telegram-login-button';
 
 export const myAPPStep = atom({
   key: 'formUserState/myAPPStep',
   default: 0,
 });
 
-export const myTelegramData = atom({
+export const myTelegramData = atom<TelegramUser>({
   key: 'formUserState/myTelegramData',
-  default:
-    typeof window !== 'undefined'
-      ? sessionStorage.getItem('_telegramData')
-      : null,
+  default: {
+    id: 0,
+    first_name: '',
+    username: '',
+    photo_url: '',
+    auth_date: 0,
+    hash: '',
+  },
 });

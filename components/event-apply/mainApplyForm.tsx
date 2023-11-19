@@ -14,17 +14,16 @@ const MainApplyForm = ({
   setAllChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const myTelegram = useRecoilValue(myTelegramData);
-  const myTelegramJSON = myTelegram !== null ? JSON.parse(myTelegram) : null;
 
-  console.log(myTelegramJSON);
+  console.log(myTelegram);
 
   useEffect(() => {
-    if (myTelegramJSON === null) {
+    if (myTelegram?.id !== 0) {
       setAllChecked(false);
     } else {
       setAllChecked(true);
     }
-  }, [myTelegramJSON]);
+  }, [myTelegram]);
 
   const handleClickLink = (url: string) => {
     window.open(url, '_blank');

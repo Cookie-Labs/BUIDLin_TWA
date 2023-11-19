@@ -1,28 +1,37 @@
-import { useRecoilValue } from 'recoil';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import { myTelegramData } from '@/states/formUserState';
-import TelegramLoginButton from 'telegram-login-button';
-import { TelegramOAuthResponse } from '@/states/formUserState';
+import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 
 export const TelegramOAuth = () => {
-  const myTelegram = useRecoilValue(myTelegramData);
-  const myTelegramJSON = myTelegram !== null ? JSON.parse(myTelegram) : null;
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [myTelegram, setMyTelegram] = useRecoilState(myTelegramData);
 
-  const handleTelegramResponse = async (response: TelegramOAuthResponse) => {
-    typeof window !== 'undefined'
-      ? sessionStorage.setItem('_telegramData', JSON.stringify(response))
-      : null;
+  useEffect(() => {
+    if (myTelegram?.id !== 0) {
+      setLoggedIn(true);
+    }
+  }, [myTelegram]);
+
+  const handleTelegramResponse = async (response: TelegramUser) => {
+    setMyTelegram(response);
   };
 
   return (
     <>
-      {myTelegramJSON === null ? (
+      {loggedIn ? (
+        <div className="flex items-center justify-center">
+          {myTelegram?.id}
+          {myTelegram?.first_name}
+        </div>
+      ) : (
         <TelegramLoginButton
           dataOnauth={handleTelegramResponse}
           botName="BUIDLin_Testing_Bot"
           className="flex items-center justify-center"
         />
-      ) : (
-        <div>Logged In!</div>
       )}
     </>
   );

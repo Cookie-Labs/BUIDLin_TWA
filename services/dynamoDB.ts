@@ -32,8 +32,8 @@ export const createNewParticipant = async ({
   });
 
   try {
-    const response = await docClient.send(command);
-    return response;
+    await docClient.send(command);
+    console.log('Success');
   } catch (error) {
     throw error;
   }
@@ -55,7 +55,7 @@ export const getParticipant = async ({
 
   try {
     const response = await docClient.send(command);
-    console.log(response);
+    return response;
   } catch (error: any) {
     if (error.name !== 'ValidationException') {
       throw error;
@@ -77,8 +77,8 @@ export const updateParticipant = async ({
   });
 
   try {
-    const response = await docClient.send(command);
-    return response;
+    await docClient.send(command);
+    console.log('Success');
   } catch (error) {
     throw error;
   }

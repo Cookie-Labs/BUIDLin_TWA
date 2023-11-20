@@ -1,13 +1,12 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 
 import { EventForm } from '@/mock/eventInterface';
 import { eventsInProgress } from '@/mock/events';
 
-import { myAPPStep } from '@/states/formUserState';
-import { useRecoilValue } from 'recoil';
-import { getParticipant } from '@/services/dynamoDB';
+import { applyForEvent, myAPPStep } from '@/states/formUserState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import NextButton from '@/components/event-apply/nextButton';
 import BackButton from '@/components/event-apply/backButton';
@@ -26,6 +25,7 @@ export default function EventApplyPage({
   params: { slug: string };
 }) {
   const tab = useRecoilValue(myAPPStep);
+  const setApplyForEvent = useSetRecoilState(applyForEvent);
   const [allChecked, setAllChecked] = useState(false);
   // TODO:나중에 백엔드로 변경
   const event: EventForm | undefined = eventsInProgress.find(
@@ -36,8 +36,9 @@ export default function EventApplyPage({
     return <NotFound />;
   }
 
-  const myData = getParticipant({ tableName: event?.id, userTelegramId: '1' });
-  console.log(myData);
+  useEffect(() => {
+    setApplyForEvent(event.id);
+  }, [event])
 
   return (
     <div className="relative flex min-h-[100vh] max-w-[100%] flex-col items-center justify-between bg-primary p-[1.6rem] pt-[3.2rem]">

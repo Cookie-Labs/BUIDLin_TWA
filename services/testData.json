@@ -1,0 +1,6 @@
+{
+    "userTelegramId": "string",
+    "lastAccess": "number",
+    "q1": "string",
+    "q2": "string"
+}

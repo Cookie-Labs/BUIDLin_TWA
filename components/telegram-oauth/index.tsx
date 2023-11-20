@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { myTelegramData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
+import { getParticipant, createNewParticipant } from '@/services/dynamoDB';
 
-export const TelegramOAuth = () => {
+export const TelegramOAuth = ({eventId} : {eventId: string}) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [myTelegram, setMyTelegram] = useRecoilState(myTelegramData);
 
@@ -19,6 +20,18 @@ export const TelegramOAuth = () => {
     setMyTelegram(response);
     setLoggedIn(true);
   };
+  const myData = getParticipant({
+    tableName: eventId,
+    // userTelegramId: String(myTelegram?.id),
+    userTelegramId: "1",
+  });
+  const myData2 = getParticipant({
+    tableName: eventId,
+    // userTelegramId: String(myTelegram?.id),
+    userTelegramId: '2',
+  });
+  console.log(myData);
+  console.log(myData2);
 
   return (
     <>

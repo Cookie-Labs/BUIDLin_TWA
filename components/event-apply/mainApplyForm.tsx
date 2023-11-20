@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { TelegramOAuth } from '../telegram-oauth';
 import { ApplyForm } from '@/mock/eventInterface';
 import { useRecoilValue } from 'recoil';
-import { myTelegramData } from '@/states/formUserState';
+import { applyForEvent, myTelegramData } from '@/states/formUserState';
 
 const MainApplyForm = ({
   form,
@@ -14,8 +14,10 @@ const MainApplyForm = ({
   setAllChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const myTelegram = useRecoilValue(myTelegramData);
+  const applyForEventId = useRecoilValue(applyForEvent);
 
   console.log(myTelegram);
+  console.log(applyForEventId);
 
   useEffect(() => {
     if (myTelegram?.id === 0) {
@@ -62,7 +64,7 @@ const MainApplyForm = ({
         })}
       </div>
       <div className="flex h-auto w-auto items-center justify-center">
-        <TelegramOAuth />
+        <TelegramOAuth eventId={applyForEventId}/>
       </div>
       <span className="whitespace-pre-line text-[1.4rem] font-bold leading-8 text-gray08">
         ※ You can save the submission form for the corresponding page each time

@@ -3,6 +3,11 @@
 import { atom } from 'recoil';
 import { TelegramUser } from 'telegram-login-button';
 
+export const applyForEvent = atom({
+  key: 'formUserState/applyForEvent',
+  default: '',
+})
+
 export const myAPPStep = atom({
   key: 'formUserState/myAPPStep',
   default: 0,
@@ -19,3 +24,8 @@ export const myTelegramData = atom<TelegramUser>({
     hash: '',
   },
 });
+
+export const myFormData = atom({
+  key: 'fromUserState/myFormData',
+  default: [],
+})

@@ -23,7 +23,7 @@ export const createNewParticipant = async ({
 }: {
   tableName: string;
   participantData: {
-    userTelegramId: string;
+    userTelegramId: number;
     lastAccess: number;
   };
 }) => {
@@ -45,7 +45,7 @@ export const getParticipant = async ({
   userTelegramId,
 }: {
   tableName: string;
-  userTelegramId: string;
+  userTelegramId: number;
 }) => {
   const command = new GetCommand({
     TableName: tableName,
@@ -66,33 +66,13 @@ export const getParticipant = async ({
   }
 };
 
-export const updateParticipant = async ({
-  tableName,
-  updateParticipantData,
-}: {
-  tableName: string;
-  userTelegramId: string;
-  updateParticipantData: any;
-}) => {
-  const command = new PutCommand({
-    TableName: tableName,
-    Item: updateParticipantData,
-  });
-
-  try {
-    await docClient.send(command);
-    console.log('Success');
-  } catch (error) {
-    throw error;
-  }
-};
 
 export const deleteParticipant = async ({
   tableName,
   userTelegramId,
 }: {
   tableName: string;
-  userTelegramId: string;
+  userTelegramId: number;
 }) => {
   const command = new DeleteCommand({
     TableName: tableName,

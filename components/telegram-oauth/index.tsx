@@ -6,7 +6,7 @@ import { myTelegramData, myFormData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 import { getParticipant, createNewParticipant } from '@/services/dynamoDB';
 
-export const TelegramOAuth = ({eventId} : {eventId: string}) => {
+export const TelegramOAuth = ({ eventId }: { eventId: string }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [myTelegram, setMyTelegram] = useRecoilState(myTelegramData);
   const setMyFormData = useSetRecoilState(myFormData);
@@ -17,12 +17,19 @@ export const TelegramOAuth = ({eventId} : {eventId: string}) => {
     }
   }, [myTelegram]);
 
-  const handleGetAndSetData = async (telegramId : string) => {
+  const handleGetAndSetData = async (telegramId: number) => {
     try {
-      let user = await getParticipant({tableName: eventId, userTelegramId: telegramId});
+      let user = await getParticipant({
+        tableName: eventId,
+        userTelegramId: telegramId,
+      });
+      console.log(user);
       if (user === null) {
-        const items= {userTelegramId: telegramId, lastAccess: Date.now()}
-        await createNewParticipant({tableName: eventId, participantData: items})
+        const items = { userTelegramId: telegramId, lastAccess: Date.now() };
+        await createNewParticipant({
+          tableName: eventId,
+          participantData: items,
+        });
         setMyFormData(items);
         console.log('NEW USER!');
       } else {
@@ -32,12 +39,26 @@ export const TelegramOAuth = ({eventId} : {eventId: string}) => {
     } catch (error) {
       console.error('Error!', error);
     }
-  }
+  };
 
   const handleTelegramResponse = async (response: TelegramUser) => {
     setMyTelegram(response);
     setLoggedIn(true);
-    handleGetAndSetData(String(response.id));
+    handleGetAndSetData(response.id);
+  };
+
+  const handleTestButton = async () => {
+    const response = {
+      id: 145136631,
+      first_name: 'K.',
+      username: 'jack',
+      photo_url: '',
+      auth_date: 252452542,
+      hash: '',
+    };
+    setMyTelegram(response);
+    setLoggedIn(true);
+    handleGetAndSetData(response.id);
   };
 
   return (
@@ -55,6 +76,9 @@ export const TelegramOAuth = ({eventId} : {eventId: string}) => {
           className="flex items-center justify-center"
         />
       )}
+      <button onClick={handleTestButton}>
+        TEST BUTTON
+      </button>
     </>
   );
 };

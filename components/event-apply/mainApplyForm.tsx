@@ -17,7 +17,6 @@ const MainApplyForm = ({
   const applyForEventId = useRecoilValue(applyForEvent);
 
   console.log(myTelegram);
-  console.log(applyForEventId);
 
   useEffect(() => {
     if (myTelegram?.id === 0) {

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { myTelegramData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';

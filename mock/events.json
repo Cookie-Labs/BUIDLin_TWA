@@ -322,16 +322,9 @@
           },
           {
             "question": "You have the opportunity to present your existing business model to a panel of VCs and investors on the first day of the program. If you are interested in presenting your model, please specify your: a) team name b) number of team members and c) be sure to submit your IR Pitching Deck and a IR poster for display (both in English) by December 20th  (Note: You can present your BM in either Japanese or Korean— simultaneous translation will be provided).\n\nDo you wish to participate?",
-            "type": "hidden",
+            "type": "binary",
             "required": true,
-            "options": ["Yes", "No"],
-            "hiddenQuestion": [
-              {
-                "question": "What is your team name?",
-                "type": "open",
-                "required": true
-              }
-            ]
+            "options": ["Yes", "No"]
           }
         ]
       },

@@ -24,25 +24,10 @@ export const TelegramOAuth = () => {
   return (
     <>
       {loggedIn ? (
-        <div className="flex h-auto w-full items-center justify-center gap-[1.5rem]">
-          <Image
-            src={myTelegram?.photo_url}
-            alt="telegram image url"
-            priority
-            style={{
-              width: '3rem',
-              height: '3rem',
-              borderRadius: '50%',
-              objectFit: 'cover',
-            }}
-            width={1000}
-            height={1000}
-          />
-          <div className="flex h-auto w-auto items-center justify-center rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem]">
-            <span className="text-center text-[1.6rem] font-medium text-white">
-              {myTelegram?.first_name} Logged In!
-            </span>
-          </div>
+        <div className="flex h-auto w-auto items-center justify-center rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem]">
+          <span className="text-center text-[1.6rem] font-medium text-white">
+            {myTelegram?.first_name} Logged In!
+          </span>
         </div>
       ) : (
         <TelegramLoginButton

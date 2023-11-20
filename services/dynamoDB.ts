@@ -5,6 +5,7 @@ import {
   DynamoDBDocumentClient,
   GetCommand,
   PutCommand,
+  DeleteCommand,
 } from '@aws-sdk/lib-dynamodb';
 
 const dbClient = new DynamoDBClient({
@@ -59,6 +60,8 @@ export const getParticipant = async ({
   } catch (error: any) {
     if (error.name !== 'ValidationException') {
       throw error;
+    } else {
+      return null;
     }
   }
 };
@@ -74,6 +77,28 @@ export const updateParticipant = async ({
   const command = new PutCommand({
     TableName: tableName,
     Item: updateParticipantData,
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteParticipant = async ({
+  tableName,
+  userTelegramId,
+}: {
+  tableName: string;
+  userTelegramId: string;
+}) => {
+  const command = new DeleteCommand({
+    TableName: tableName,
+    Key: {
+      userTelegramId: userTelegramId,
+    },
   });
 
   try {

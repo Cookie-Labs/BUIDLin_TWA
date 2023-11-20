@@ -27,5 +27,5 @@ export const myTelegramData = atom<TelegramUser>({
 
 export const myFormData = atom({
   key: 'fromUserState/myFormData',
-  default: [],
+  default: {},
 })

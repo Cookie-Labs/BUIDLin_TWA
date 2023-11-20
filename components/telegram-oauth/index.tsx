@@ -1,14 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { myTelegramData } from '@/states/formUserState';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { myTelegramData, myFormData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 import { getParticipant, createNewParticipant } from '@/services/dynamoDB';
 
 export const TelegramOAuth = ({eventId} : {eventId: string}) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [myTelegram, setMyTelegram] = useRecoilState(myTelegramData);
+  const setMyFormData = useSetRecoilState(myFormData);
 
   useEffect(() => {
     if (myTelegram?.id !== 0) {
@@ -16,22 +17,28 @@ export const TelegramOAuth = ({eventId} : {eventId: string}) => {
     }
   }, [myTelegram]);
 
+  const handleGetAndSetData = async (telegramId : string) => {
+    try {
+      let user = await getParticipant({tableName: eventId, userTelegramId: telegramId});
+      if (user === null) {
+        const items= {userTelegramId: telegramId, lastAccess: Date.now()}
+        await createNewParticipant({tableName: eventId, participantData: items})
+        setMyFormData(items);
+        console.log('NEW USER!');
+      } else {
+        setMyFormData(user);
+        console.log('EXISTING USER!');
+      }
+    } catch (error) {
+      console.error('Error!', error);
+    }
+  }
+
   const handleTelegramResponse = async (response: TelegramUser) => {
     setMyTelegram(response);
     setLoggedIn(true);
+    handleGetAndSetData(String(response.id));
   };
-  const myData = getParticipant({
-    tableName: eventId,
-    // userTelegramId: String(myTelegram?.id),
-    userTelegramId: "1",
-  });
-  const myData2 = getParticipant({
-    tableName: eventId,
-    // userTelegramId: String(myTelegram?.id),
-    userTelegramId: '2',
-  });
-  console.log(myData);
-  console.log(myData2);
 
   return (
     <>

@@ -7,6 +7,7 @@ import { eventsInProgress } from '@/mock/events';
 
 import { myAPPStep } from '@/states/formUserState';
 import { useRecoilValue } from 'recoil';
+import { getParticipant } from '@/services/dynamoDB';
 
 import NextButton from '@/components/event-apply/nextButton';
 import BackButton from '@/components/event-apply/backButton';
@@ -26,7 +27,6 @@ export default function EventApplyPage({
 }) {
   const tab = useRecoilValue(myAPPStep);
   const [allChecked, setAllChecked] = useState(false);
-
   // TODO:나중에 백엔드로 변경
   const event: EventForm | undefined = eventsInProgress.find(
     (event) => event.id === params.slug,
@@ -35,6 +35,9 @@ export default function EventApplyPage({
   if (!event) {
     return <NotFound />;
   }
+
+  const myData = getParticipant({ tableName: event?.id, userTelegramId: '1' });
+  console.log(myData);
 
   return (
     <div className="relative flex min-h-[100vh] max-w-[100%] flex-col items-center justify-between bg-primary p-[1.6rem] pt-[3.2rem]">

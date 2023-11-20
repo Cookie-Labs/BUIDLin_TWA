@@ -6,15 +6,9 @@ import { useRecoilState } from 'recoil';
 import { myTelegramData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 
-export const TelegramOAuth = ({ eventId }: { eventId: string }) => {
+export const TelegramOAuth = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [myTelegram, setMyTelegram] = useRecoilState(myTelegramData);
-  const telegramRedirectUrl =
-    typeof window !== 'undefined'
-      ? window?.origin.includes('localhost')
-        ? `http://localhost:3000/event-apply/${eventId}`
-        : `https://buidlin.vercel.app/event-apply${eventId}`
-      : undefined;
 
   useEffect(() => {
     if (myTelegram?.id !== 0) {
@@ -52,7 +46,6 @@ export const TelegramOAuth = ({ eventId }: { eventId: string }) => {
         </div>
       ) : (
         <TelegramLoginButton
-          dataAuthUrl={telegramRedirectUrl}
           dataOnauth={handleTelegramResponse}
           botName="BUIDLin_Testing_Bot"
           className="flex items-center justify-center"

@@ -45,7 +45,6 @@ export default function EventApplyPage({
               <MainApplyForm
                 form={event.applyForm[0]}
                 setAllChecked={setAllChecked}
-                eventId={event.id}
               />
               <NextButton
                 type="Next"

@@ -85,7 +85,7 @@ const EachQuestionForm = ({
             </span>
             <div className="h-[4rem] w-full">
               <input
-                className="focus:shadow h-full w-full rounded-[0.8rem] border border-solid border-gray12 bg-secondary px-[1rem] text-[1.6rem] hover:border-blue03 focus:border-blue07 focus:outline-none"
+                className="focus:shadow h-full w-full rounded-[0.8rem] border border-solid border-gray12 bg-secondary px-[1rem] text-[1.6rem] text-white hover:border-blue03 focus:border-blue07 focus:outline-none"
                 type="text"
                 onChange={handleInputChange}
                 value={userInput}

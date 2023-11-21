@@ -52,7 +52,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
       <div className="aspect-[1/0.38827] w-full rounded-b-[1.6rem] bg-secondary px-[1.6rem]">
         <div className="relative flex h-full w-full flex-col items-start justify-evenly">
           <div className="absolute right-0 top-[1.6rem] flex aspect-[1/0.28235] w-[8.5rem] items-center justify-center rounded-[10rem] bg-gray13">
-            <span className="text-md font-semiBold">+{participantCount}</span>
+            <span className="text-md font-semiBold text-white">+{participantCount}</span>
           </div>
           <div className="flex items-center justify-center gap-[1.2rem]">
             <Image

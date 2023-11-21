@@ -59,8 +59,8 @@ export const getParticipant = async ({
     const response = await docClient.send(command);
     console.log(response);
     return response;
-  } catch (error: any) {
-    return null;
+  } catch (error) {
+    throw error;
   }
 };
 

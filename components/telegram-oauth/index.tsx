@@ -27,7 +27,6 @@ export const TelegramOAuth = ({
   const setFormData = useSetRecoilState(myFormData);
 
   const handleTelegramResponse = async (response: TelegramUser) => {
-    console.log(response);
     try {
       setTelegramResponse(response);
 

@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect } from 'react';
+
 import { EventForm } from '@/mock/eventInterface';
 import { eventsInProgress } from '@/mock/events';
 
@@ -13,11 +17,16 @@ import ApplyButton from '@/components/event-detail/applyButton';
 import ScrollToTopButton from '@/components/scroll-to-top-button';
 import NotFound from './not-found';
 
+import { myAPPStep, myFormData } from '@/states/formUserState';
+import { useSetRecoilState } from 'recoil';
+
 export default function EventDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
+  const setTab = useSetRecoilState(myAPPStep);
+  const setFormData = useSetRecoilState(myFormData);
   // TODO:나중에 백엔드로 변경
   const event: EventForm | undefined = eventsInProgress.find(
     (event) => event.id === params.slug,
@@ -26,6 +35,14 @@ export default function EventDetailPage({
   if (!event) {
     return <NotFound />;
   }
+
+  useEffect(() => {
+    setTab(0);
+    setFormData({
+      userTelegramId: 0,
+      userIsSubmitted: false,
+    });
+  }, []);
 
   return (
     <div className="relative flex min-h-[100vh] max-w-[100%] flex-col items-center justify-start gap-[3.2rem] bg-primary p-[1.6rem] pt-[2.4rem]">

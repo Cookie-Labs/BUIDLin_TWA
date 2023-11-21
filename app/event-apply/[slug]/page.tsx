@@ -1,16 +1,12 @@
 'use client';
 
-import { Fragment, useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { EventForm } from '@/mock/eventInterface';
 import { eventsInProgress } from '@/mock/events';
 
-import { applyForEvent, myAPPStep } from '@/states/formUserState';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-
-import NextButton from '@/components/event-apply/nextButton';
-import BackButton from '@/components/event-apply/backButton';
-import OkayButton from '@/components/event-apply/okayButton';
+import { applyForEvent, myAPPStep, myFormData } from '@/states/formUserState';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 
 import MainApplyForm from '@/components/event-apply/mainApplyForm';
 import SubApplyForm from '@/components/event-apply/subApplyForm';
@@ -26,11 +22,14 @@ export default function EventApplyPage({
 }) {
   const tab = useRecoilValue(myAPPStep);
   const setApplyForEvent = useSetRecoilState(applyForEvent);
-  const [allChecked, setAllChecked] = useState(false);
+  const [formData, setFormData] = useRecoilState(myFormData);
+
   // TODO:나중에 백엔드로 변경
   const event: EventForm | undefined = eventsInProgress.find(
     (event) => event.id === params.slug,
   );
+
+  console.log(formData);
 
   if (!event) {
     return <NotFound />;
@@ -38,74 +37,31 @@ export default function EventApplyPage({
 
   useEffect(() => {
     setApplyForEvent(event.id);
-  }, [event])
+    setFormData({
+      userTelegramId: 0,
+      userIsSubmitted: false,
+    });
+  }, [event]);
 
   return (
-    <div className="relative flex min-h-[100vh] max-w-[100%] flex-col items-center justify-between bg-primary p-[1.6rem] pt-[3.2rem]">
+    <>
       {event.applyForm ? (
         <>
-          {tab === 0 && (
-            <>
-              <MainApplyForm
-                form={event.applyForm[0]}
-                setAllChecked={setAllChecked}
-              />
-              <NextButton
-                type="Next"
-                allChecked={allChecked}
-                setAllChecked={setAllChecked}
-              />
-            </>
-          )}
+          {tab === 0 && <MainApplyForm form={event.applyForm[0]} />}
           {0 < tab &&
             tab < event.applyForm.length - 1 &&
             event.applyForm.slice(1).map((a, i) => {
               if (tab === i + 1) {
-                return (
-                  <Fragment key={i}>
-                    <SubApplyForm
-                      section={tab}
-                      form={a}
-                      setAllChecked={setAllChecked}
-                    />
-                    <div className="flex h-auto w-full items-center justify-center gap-[1.6rem]">
-                      <BackButton />
-                      <NextButton
-                        type="Next"
-                        allChecked={allChecked}
-                        setAllChecked={setAllChecked}
-                      />
-                    </div>
-                  </Fragment>
-                );
+                return <SubApplyForm key={i} section={tab} form={a} />;
               } else null;
             })}
           {tab === event.applyForm.length - 1 && (
-            <>
-              <ConsentApplyForm
-                section={tab}
-                form={event.applyForm[tab]}
-                setAllChecked={setAllChecked}
-              />
-              <div className="flex h-auto w-full items-center justify-center gap-[1.6rem]">
-                <BackButton />
-                <NextButton
-                  type="Submit"
-                  allChecked={allChecked}
-                  setAllChecked={setAllChecked}
-                />
-              </div>
-            </>
+            <ConsentApplyForm section={tab} form={event.applyForm[tab]} />
           )}
-          {tab === event.applyForm.length && (
-            <>
-              <EndApplyForm />
-              <OkayButton id={event.id} />
-            </>
-          )}
+          {tab === event.applyForm.length && <EndApplyForm />}
         </>
       ) : null}
       <ScrollToTopButton />
-    </div>
+    </>
   );
 }

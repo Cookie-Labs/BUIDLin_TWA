@@ -3,6 +3,7 @@
 // 2) hidden required 적용 안됨
 // 3) hidden required 부분 입력 후 지울 때 데이터 안사라짐
 // 4) 계속 map unique key 입력하라고 warning 뜸
+// 5) 히든은 setEachState에 값이 있으면 체크되었다고 생각하기 때문에 back 버그 이슈
 
 'use client';
 
@@ -21,6 +22,16 @@ const EachQuestionForm = ({
   const [userInput, setUserInput] = useState<any>(eachState);
   const [showHiddenQuestions, setShowHiddenQuestions] =
     useState<boolean>(false);
+
+  useEffect(() => {
+    if (userInput[0] === each.options?.[0]) {
+      setShowHiddenQuestions(true);
+    }
+  }, [each.options?.[0]]);
+
+  useEffect(() => {
+    setUserInput(eachState);
+  }, [eachState]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
@@ -230,21 +241,34 @@ const EachQuestionForm = ({
                       <EachQuestionForm
                         key={hiddenQ.question}
                         each={hiddenQ}
-                        eachState={''}
+                        eachState={userInput[i + 1] ? userInput[i + 1] : ''}
                         setEachState={(value: any) => {
                           const updatedEachAnswer = [...userInput];
                           updatedEachAnswer[i + 1] = value;
                           setUserInput(updatedEachAnswer);
-                          
-                          let hiddenEachRequired = each.hiddenQuestion?.map((q) => q.required);
-                          for (let j = 0; j < (each.hiddenQuestion ? each.hiddenQuestion.length : 0); j++ ) {
-                            if (hiddenEachRequired?.[j]) {  // 히든 질문이 필수일 때
-                              if (updatedEachAnswer[j + 1] !== undefined) {  // 필수인 히든 질문을 입력했을 때
+
+                          let hiddenEachRequired = each.hiddenQuestion?.map(
+                            (q) => q.required,
+                          );
+                          for (
+                            let j = 0;
+                            j <
+                            (each.hiddenQuestion
+                              ? each.hiddenQuestion.length
+                              : 0);
+                            j++
+                          ) {
+                            if (hiddenEachRequired?.[j]) {
+                              // 히든 질문이 필수일 때
+                              if (updatedEachAnswer[j + 1] !== undefined) {
+                                // 필수인 히든 질문을 입력했을 때
                                 setEachState(updatedEachAnswer);
-                              } else {  // 필수인 히든 질문을 입력하지 않았을 때
+                              } else {
+                                // 필수인 히든 질문을 입력하지 않았을 때
                                 setEachState('');
                               }
-                            } else {  // 히든 질문이 필수가 아닐 때
+                            } else {
+                              // 히든 질문이 필수가 아닐 때
                               setEachState(updatedEachAnswer);
                             }
                           }

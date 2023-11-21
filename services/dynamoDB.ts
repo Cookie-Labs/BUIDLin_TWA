@@ -1,11 +1,12 @@
 //TODO: https://medium.com/@2018.itsuki/dynamo-db-with-next-js-ea24b0cf78a4
 
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
   GetCommand,
   PutCommand,
   DeleteCommand,
+  UpdateCommand,
 } from '@aws-sdk/lib-dynamodb';
 
 const dbClient = new DynamoDBClient({
@@ -24,7 +25,7 @@ export const createNewParticipant = async ({
   tableName: string;
   participantData: {
     userTelegramId: number;
-    lastAccess: number;
+    userIsSubmitted: boolean;
   };
 }) => {
   const command = new PutCommand({
@@ -56,16 +57,12 @@ export const getParticipant = async ({
 
   try {
     const response = await docClient.send(command);
+    console.log(response);
     return response;
   } catch (error: any) {
-    if (error.name !== 'ValidationException') {
-      throw error;
-    } else {
-      return null;
-    }
+    return null;
   }
 };
-
 
 export const deleteParticipant = async ({
   tableName,
@@ -84,6 +81,68 @@ export const deleteParticipant = async ({
   try {
     await docClient.send(command);
     console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateParticipant = async ({
+  tableName,
+  participantData,
+}: {
+  tableName: string;
+  participantData: any;
+}) => {
+  const command = new PutCommand({
+    TableName: tableName,
+    Item: participantData,
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const submitParticipant = async ({
+  tableName,
+  userTelegramId,
+}: {
+  tableName: string;
+  userTelegramId: number;
+}) => {
+  const command = new UpdateCommand({
+    TableName: tableName,
+    Key: {
+      userTelegramId: userTelegramId,
+    },
+    UpdateExpression: 'SET userIsSubmitted = :submitted',
+    ExpressionAttributeValues: {
+      ':submitted': true,
+    },
+    ReturnValues: 'ALL_NEW',
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getParticipantCount = async ({ tableName }: { tableName: string }) => {
+  const command = new ScanCommand({
+    TableName: tableName,
+    Select: 'COUNT',
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response.Count;
   } catch (error) {
     throw error;
   }

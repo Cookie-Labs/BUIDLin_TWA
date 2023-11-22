@@ -11,8 +11,8 @@ export default function TwaLayout({ children }: { children: React.ReactNode }) {
         window.Telegram.WebApp.MainButton.show();
         window.Telegram.WebApp.MainButton.onClick(CALLBACKMESSAGE) */}
       </script>
-      {/* <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-      <script>eruda.init();</script> */}
+      <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+      <script>eruda.init();</script>
     </div>
   );
 }

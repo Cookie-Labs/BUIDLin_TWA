@@ -6,6 +6,8 @@ import { myFormData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 import { getParticipant, createNewParticipant } from '@/services/dynamoDB';
 
+import { FaTelegramPlane } from 'react-icons/fa';
+
 export const TelegramOAuth = ({
   eventId,
   allChecked,
@@ -28,8 +30,9 @@ export const TelegramOAuth = ({
   const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : '';
   const params = new URLSearchParams(hash);
   const initData = new URLSearchParams(params.get('tgWebAppData') ?? '');
-  // if (Object.keys(initData).length !== 0) TWA
-  // else WEB
+
+  console.log(params);
+  console.log(initData);
 
   const handleTelegramResponse = async (response: TelegramUser) => {
     try {
@@ -87,12 +90,30 @@ export const TelegramOAuth = ({
             {telegramResponse.first_name} Logged In!
           </span>
         </div>
-      ) : (
+      ) : Object.keys(initData).length === 0 ? (
         <TelegramLoginButton
           dataOnauth={handleTelegramResponse}
           botName="buidlin_bot"
           className="flex items-center justify-center"
         />
+      ) : (
+        <button className="flex h-auto w-auto items-center justify-center rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem] gap-[1.3rem]"
+          onClick={() => {
+            handleTelegramResponse({
+              id: initData.get('id') !== null ? Number(initData.get('id')) : 0,
+              first_name: initData.get('first_name') ?? '',
+              username: initData.get('username') ?? '',
+              photo_url: '',
+              auth_date: 0,
+              hash: '',
+            });
+          }}
+        >
+          <FaTelegramPlane className="h-[1.6rem] w-[1.6rem] text-white"/>
+          <span className="text-center text-[1.6rem] font-medium text-white">
+            Sign In
+          </span>
+        </button>
       )}
     </>
   );

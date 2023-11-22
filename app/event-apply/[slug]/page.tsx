@@ -63,6 +63,7 @@ export default function EventApplyPage({
       ) : null}
       <ScrollToTopButton />
       <script>
+        window.Telegram.WebApp.ready();
         window.Telegram.WebApp.BackButton.show();
         window.Telegram.WebApp.BackButton.onClick(window.history.back());
       </script>

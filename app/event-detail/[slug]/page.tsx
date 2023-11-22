@@ -69,6 +69,7 @@ export default function EventDetailPage({
       {event.applyForm ? <ApplyButton eventId={event.id} /> : null}
       <ScrollToTopButton />
       <script>
+        window.Telegram.WebApp.ready();
         window.Telegram.WebApp.BackButton.show();
         window.Telegram.WebApp.BackButton.onClick(window.history.back());
         {/* window.Telegram.WebApp.MainButton.setText('Apply');

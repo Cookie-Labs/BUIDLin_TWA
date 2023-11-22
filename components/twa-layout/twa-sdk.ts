@@ -1,7 +1,9 @@
-import { Telegram } from '@twa-dev/types';
+import { Telegram } from './twa-types';
 
 declare global {
   interface Window {
     Telegram: Telegram;
   }
 }
+
+export {};

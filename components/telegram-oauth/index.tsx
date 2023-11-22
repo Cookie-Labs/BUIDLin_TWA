@@ -25,6 +25,11 @@ export const TelegramOAuth = ({
     hash: '',
   });
   const setFormData = useSetRecoilState(myFormData);
+  const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : '';
+  const params = new URLSearchParams(hash);
+  const initData = new URLSearchParams(params.get('tgWebAppData') ?? '');
+  // if (Object.keys(initData).length !== 0) TWA
+  // else WEB
 
   const handleTelegramResponse = async (response: TelegramUser) => {
     try {

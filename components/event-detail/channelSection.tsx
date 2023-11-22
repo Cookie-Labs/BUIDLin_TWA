@@ -2,6 +2,7 @@
 
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { TelegramForm } from '@/mock/eventInterface';
+import Image from 'next/image';
 
 const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
   const handleButtonClick = (url: string) => {
@@ -27,9 +28,22 @@ const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
               }}
             >
               <div className="flex h-[5rem] w-[5rem] items-center justify-center rounded-circle bg-blue08">
-                <span className="text-[3rem] font-regular text-white">
-                  {t.emoji}
-                </span>
+                {t.iconUrl ? (
+                  <Image
+                    src={t.iconUrl}
+                    alt={`${t.name} icon`}
+                    style={{
+                      width: '5rem',
+                      height: '5rem',
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                    }}
+                    width={1000}
+                    height={1000}
+                  />
+                ) : (
+                  <span className="text-[3rem] font-regular text-white">🎉</span>
+                )}
               </div>
               <span className="text-[1.6rem] font-semiBold text-white">
                 {t.name}

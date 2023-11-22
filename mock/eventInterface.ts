@@ -9,7 +9,7 @@ export interface AwardForm {
 export interface TelegramForm {
   name: string;
   link: string;
-  emoji: string;
+  iconUrl?: string;
 }
 
 export interface LocationForm {

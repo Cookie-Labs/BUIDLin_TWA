@@ -31,14 +31,9 @@
     ],
     "telegram": [
       {
-        "name": "Korea Hackathon Kit",
+        "name": "IMPACT Hackathon Kit",
         "link": "https://t.me/addlist/rFgyLFAlfQ8yYTJl",
-        "emoji": "🇰🇷"
-      },
-      {
-        "name": "Japan Hackathon Kit",
-        "link": "https://t.me/addlist/digLf6p2_IczN2Nl",
-        "emoji": "🇯🇵"
+        "iconUrl": "/images/event1_telegramIcon.png"
       }
     ],
     "country": "Republic of Korea",

@@ -45,7 +45,7 @@ export default function EventDetailPage({
   }, []);
 
   return (
-    <div>
+    <div className="relative flex min-h-[100vh] max-w-[100%] flex-col items-center justify-start gap-[3.2rem] bg-primary p-[1.6rem] pt-[2.4rem]">
       <PosterSection posterImgUrl={event.posterImgUrl} />
       <TitleSection
         title={event.title}

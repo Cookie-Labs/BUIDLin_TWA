@@ -6,7 +6,7 @@ export default function TwaLayout({ children }: { children: React.ReactNode }) {
       <script>
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
-        window.Telegram.WebApp.MainButton.show();
+        {/* window.Telegram.WebApp.MainButton.show(); */}
       </script>
       <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
       <script>eruda.init();</script>

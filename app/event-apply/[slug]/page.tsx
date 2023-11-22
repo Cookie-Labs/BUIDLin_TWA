@@ -44,7 +44,7 @@ export default function EventApplyPage({
   }, [event]);
 
   return (
-    <>
+    <div>
       {event.applyForm ? (
         <>
           {tab === 0 && <MainApplyForm form={event.applyForm[0]} />}
@@ -62,6 +62,10 @@ export default function EventApplyPage({
         </>
       ) : null}
       <ScrollToTopButton />
-    </>
+      <script>
+        window.Telegram.WebApp.BackButton.show();
+        window.Telegram.WebApp.BackButton.onClick(window.history.back());
+      </script>
+    </div>
   );
 }

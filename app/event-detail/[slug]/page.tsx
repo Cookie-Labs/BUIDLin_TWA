@@ -68,6 +68,13 @@ export default function EventDetailPage({
       {event.sponsors ? <SponsorSection sponsors={event.sponsors} /> : null}
       {event.applyForm ? <ApplyButton eventId={event.id} /> : null}
       <ScrollToTopButton />
+      <script>
+        window.Telegram.WebApp.BackButton.show();
+        window.Telegram.WebApp.BackButton.onClick(window.history.back());
+        {/* window.Telegram.WebApp.MainButton.setText('Apply');
+        window.Telegram.WebApp.MainButton.show();
+        window.Telegram.WebApp.MainButton.onClick(CALLBACKMESSAGE) */}
+      </script>
     </div>
   );
 }

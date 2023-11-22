@@ -90,7 +90,7 @@ export const TelegramOAuth = ({
       ) : (
         <TelegramLoginButton
           dataOnauth={handleTelegramResponse}
-          botName="BUIDLin_Testing_Bot"
+          botName="buidlin_bot"
           className="flex items-center justify-center"
         />
       )}

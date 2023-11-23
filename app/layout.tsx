@@ -39,9 +39,9 @@ export default async function RootLayout({
       <body>
         <RecoilRootProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <TmaProvider>
-              <TwaLayout>{children}</TwaLayout>
-            </TmaProvider>
+            <TwaLayout>
+              <TmaProvider>{children}</TmaProvider>
+            </TwaLayout>
           </ThemeProvider>
         </RecoilRootProvider>
       </body>

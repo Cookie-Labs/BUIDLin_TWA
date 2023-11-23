@@ -21,21 +21,29 @@ function DisplayGate({ children }: PropsWithChildren) {
   // There were no calls of SDK's init function. It means, we did not
   // even try to do it.
   if (!didInit) {
-    return <div>SDK init function is not yet called.</div>;
+    return (
+      <div className="flex min-h-[100vh] max-w-[100%] flex-col items-center justify-center gap-[2rem] bg-primary p-[1.6rem] pt-[3.2rem]">
+        <span className="text-center text-[2rem] font-semiBold text-white">
+          SDK init function is not yet called.
+        </span>
+      </div>
+    );
   }
 
   // Error occurred during SDK init.
   if (error !== null) {
     return (
-      <>
-        <p>
+      <div className="flex min-h-[100vh] max-w-[100%] flex-col items-center justify-center gap-[2rem] bg-primary p-[1.6rem] pt-[3.2rem]">
+        <span className="text-center text-[2rem] font-semiBold text-white">
           SDK was unable to initialize. Probably, current application is being
           used not in Telegram Web Apps environment.
-        </p>
+        </span>
         <blockquote>
-          <p>{errorMessage}</p>
+          <span className="text-center text-[1rem] font-regular text-white">
+            Error: {errorMessage}
+          </span>
         </blockquote>
-      </>
+      </div>
     );
   }
 
@@ -44,7 +52,13 @@ function DisplayGate({ children }: PropsWithChildren) {
   // several milliseconds or something like that, but we should
   // have this check.
   if (components === null) {
-    return <div>Loading..</div>;
+    return (
+      <div className="flex min-h-[100vh] max-w-[100%] flex-col items-center justify-center gap-[2rem] bg-primary p-[1.6rem] pt-[3.2rem]">
+        <span className="text-center text-[2rem] font-semiBold text-white">
+          Loading..
+        </span>
+      </div>
+    );
   }
 
   // Safely render application.
@@ -58,6 +72,12 @@ export function TmaProvider({ children }: PropsWithChildren) {
   return (
     <SDKProvider initOptions={{ debug: true, cssVars: true }}>
       <DisplayGate>{children}</DisplayGate>
+      <script src="https://telegram.org/js/telegram-web-app.js"></script>
+      <script>
+        window.Telegram.WebApp.ready(); window.Telegram.WebApp.expand();
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+      <script>eruda.init();</script>
     </SDKProvider>
   );
 }

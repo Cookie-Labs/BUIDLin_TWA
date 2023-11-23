@@ -19,12 +19,16 @@ export function BackButton() {
   }, []);
 
   useEffect(() => {
-    if (window.history.length > 1) {
+    if (
+      document.referrer &&
+      document.referrer.indexOf('https://t.me/buidlin_bot/app') != -1
+    ) {
+      backButton.show();
+    } else {
+      location.href = 'https://t.me/buidlin_bot/app';
       backButton.hide();
-      return;
     }
-    backButton.show();
-  }, [backButton, window.history]);
+  }, [backButton, document.referrer]);
 
   return null;
 }

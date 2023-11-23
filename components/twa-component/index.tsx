@@ -19,10 +19,10 @@ export function BackButton() {
   }, []);
 
   useEffect(() => {
-    if (document.referrer) {
-      backButton.show();
-    } else {
+    if (document.referrer === "") {
       backButton.hide();
+    } else {
+      backButton.show();
     }
   }, [backButton, document.referrer]);
 

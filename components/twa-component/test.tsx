@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useBackButton, useInitData, useMainButton } from '@tma.js/sdk-react';
+import { useBackButton, useInitData, useMainButton, usePostEvent } from '@tma.js/sdk-react';
 
 function MainButtonTest() {
   const mainButton = useMainButton();
@@ -84,9 +84,21 @@ function InitData() {
   );
 }
 
+function ReadyAndExpand() {
+  const postEvent = usePostEvent();
+
+  useEffect(() => {
+    postEvent('web_app_ready');
+    postEvent('web_app_expand');
+  }, [])
+
+  return null;
+}
+
 export default function Test() {
   return (
     <>
+      <ReadyAndExpand />
       <MainButtonTest />
       <InitData />
     </>

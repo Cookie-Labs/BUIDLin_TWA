@@ -72,12 +72,6 @@ export function TmaProvider({ children }: PropsWithChildren) {
   return (
     <SDKProvider initOptions={{ debug: true, cssVars: true }}>
       <DisplayGate>{children}</DisplayGate>
-      <script src="https://telegram.org/js/telegram-web-app.js"></script>
-      <script>
-        window.Telegram.WebApp.ready(); window.Telegram.WebApp.expand();
-      </script>
-      <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-      <script>eruda.init();</script>
     </SDKProvider>
   );
 }

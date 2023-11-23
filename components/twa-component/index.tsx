@@ -24,7 +24,7 @@ export function BackButton() {
       return;
     }
     backButton.show();
-  }, [backButton]);
+  }, [backButton, window.history]);
 
   return null;
 }

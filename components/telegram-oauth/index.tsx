@@ -27,10 +27,11 @@ export const TelegramOAuth = ({
     hash: '',
   });
   const setFormData = useSetRecoilState(myFormData);
-  const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : '';
+  const hash =
+    typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
   const params = new URLSearchParams(hash);
   const initData = new URLSearchParams(params.get('tgWebAppData') ?? '');
-
+  console.log(window.location);
   console.log(hash);
   console.log(params);
   console.log(initData);
@@ -98,7 +99,8 @@ export const TelegramOAuth = ({
           className="flex items-center justify-center"
         />
       ) : (
-        <button className="flex h-auto w-auto items-center justify-center rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem] gap-[1.3rem]"
+        <button
+          className="flex h-auto w-auto items-center justify-center gap-[1.3rem] rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem]"
           onClick={() => {
             handleTelegramResponse({
               id: Number(initData.get('id')),
@@ -110,7 +112,7 @@ export const TelegramOAuth = ({
             });
           }}
         >
-          <FaTelegramPlane className="h-[1.6rem] w-[1.6rem] text-white"/>
+          <FaTelegramPlane className="h-[1.6rem] w-[1.6rem] text-white" />
           <span className="text-center text-[1.6rem] font-medium text-white">
             Sign In
           </span>

@@ -33,16 +33,20 @@ const ApplyButton = ({ eventId }: { eventId: string }) => {
     }
   }, []);
 
-  return (
-    <button
-      className="flex h-[6rem] w-full cursor-pointer items-center justify-center rounded-[1.2rem] bg-blue07 duration-200 hover:scale-105 active:scale-100"
-      onClick={handleApplyButtonClick}
-    >
-      <span className="text-center font-[semiBold] text-[1.8rem] text-white">
-        {/* Apply */}
-      </span>
-    </button>
-  );
+  // for Browser
+  // return (
+  //   <button
+  //     className="flex h-[6rem] w-full cursor-pointer items-center justify-center rounded-[1.2rem] bg-blue07 duration-200 hover:scale-105 active:scale-100"
+  //     onClick={handleApplyButtonClick}
+  //   >
+  //     <span className="text-center font-[semiBold] text-[1.8rem] text-white">
+  //       Apply
+  //     </span>
+  //   </button>
+  // );
+  
+  // for Telegram App
+  return null;
 };
 
 export default ApplyButton;

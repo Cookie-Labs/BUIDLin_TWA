@@ -1,7 +1,6 @@
 import Card from '@/components/main/card';
 import { eventsInProgress } from '@/mock/events';
 import ScrollToTopButton from '@/components/scroll-to-top-button';
-import TwaComponents from '@/components/twa-component';
 
 export default function HomePage() {
   return (
@@ -15,7 +14,6 @@ export default function HomePage() {
         })}
       </div>
       <ScrollToTopButton />
-      <TwaComponents />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import RecoilRootProvider from '@/providers/recoilRootProvider';
 import ThemeProvider from '@/providers/themeProvider';
 import { TmaProvider } from '@/providers/tmaProvider';
 import TwaLayout from '@/components/twa-layout';
+import TwaComponents from '@/components/twa-component';
 
 const inter = Inter({
   // default font
@@ -41,6 +42,7 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <TwaLayout>
               <TmaProvider>{children}</TmaProvider>
+              <TwaComponents />
             </TwaLayout>
           </ThemeProvider>
         </RecoilRootProvider>

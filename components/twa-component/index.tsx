@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useBackButton, useMainButton, usePostEvent } from '@tma.js/sdk-react';
 
-export function MainButtonTest() {
+export function BackButton() {
   const mainButton = useMainButton();
   const backButton = useBackButton();
 
@@ -55,7 +55,7 @@ export default function TwaComponents() {
   return (
     <>
       <ReadyAndExpand />
-      {/* <MainButtonTest /> */}
+      <BackButton />
     </>
   );
 }

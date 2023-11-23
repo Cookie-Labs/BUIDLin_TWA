@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { myFormData } from '@/states/formUserState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { myFormData, initUserData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 import { getParticipant, createNewParticipant } from '@/services/dynamoDB';
 
@@ -27,14 +27,7 @@ export const TelegramOAuth = ({
     hash: '',
   });
   const setFormData = useSetRecoilState(myFormData);
-  const hash =
-    typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
-  const params = new URLSearchParams(hash);
-  const initData = new URLSearchParams(params.get('tgWebAppData') ?? '');
-  console.log(window.location);
-  console.log(hash);
-  console.log(params);
-  console.log(initData);
+  const userData = useRecoilValue(initUserData);
 
   const handleTelegramResponse = async (response: TelegramUser) => {
     try {
@@ -92,7 +85,7 @@ export const TelegramOAuth = ({
             {telegramResponse.first_name} Logged In!
           </span>
         </div>
-      ) : Object.keys(initData).length === 0 ? (
+      ) : userData.id === 0 ? (
         <TelegramLoginButton
           dataOnauth={handleTelegramResponse}
           botName="buidlin_bot"
@@ -103,10 +96,10 @@ export const TelegramOAuth = ({
           className="flex h-auto w-auto items-center justify-center gap-[1.3rem] rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem]"
           onClick={() => {
             handleTelegramResponse({
-              id: Number(initData.get('id')),
-              first_name: initData.get('first_name') ?? '',
-              username: initData.get('username') ?? '',
-              photo_url: '',
+              id: userData.id,
+              first_name: userData.firstName,
+              username: userData.username ?? '',
+              photo_url: userData.photoUrl ?? '',
               auth_date: 0,
               hash: '',
             });

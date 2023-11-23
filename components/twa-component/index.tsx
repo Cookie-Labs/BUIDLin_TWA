@@ -1,13 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useBackButton, usePostEvent } from '@tma.js/sdk-react';
 
 export function BackButton() {
+  const router = useRouter();
+  const pathname = usePathname();
   const backButton = useBackButton();
 
   const handleBackButtonClick = () => {
-    window.history.back();
+    router.back();
   };
 
   useEffect(() => {
@@ -19,12 +22,12 @@ export function BackButton() {
   }, []);
 
   useEffect(() => {
-    if (document.referrer === "") {
+    if (pathname === '/') {
       backButton.hide();
     } else {
       backButton.show();
     }
-  }, [backButton, document.referrer]);
+  }, [backButton, pathname]);
 
   return null;
 }

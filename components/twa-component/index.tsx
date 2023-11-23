@@ -19,13 +19,9 @@ export function BackButton() {
   }, []);
 
   useEffect(() => {
-    if (
-      document.referrer &&
-      document.referrer.indexOf('https://t.me/buidlin_bot/app') != -1
-    ) {
+    if (document.referrer) {
       backButton.show();
     } else {
-      location.href = 'https://t.me/buidlin_bot/app';
       backButton.hide();
     }
   }, [backButton, document.referrer]);
@@ -39,7 +35,7 @@ export function ReadyAndExpand() {
   useEffect(() => {
     postEvent('web_app_ready');
     postEvent('web_app_expand');
-  }, [])
+  }, []);
 
   return null;
 }

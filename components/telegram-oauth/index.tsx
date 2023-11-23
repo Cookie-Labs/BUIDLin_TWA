@@ -31,6 +31,7 @@ export const TelegramOAuth = ({
   const params = new URLSearchParams(hash);
   const initData = new URLSearchParams(params.get('tgWebAppData') ?? '');
 
+  console.log(hash);
   console.log(params);
   console.log(initData);
 
@@ -100,7 +101,7 @@ export const TelegramOAuth = ({
         <button className="flex h-auto w-auto items-center justify-center rounded-[2rem] bg-[#54a9eb] px-[2.1rem] py-[0.9rem] gap-[1.3rem]"
           onClick={() => {
             handleTelegramResponse({
-              id: initData.get('id') !== null ? Number(initData.get('id')) : 0,
+              id: Number(initData.get('id')),
               first_name: initData.get('first_name') ?? '',
               username: initData.get('username') ?? '',
               photo_url: '',

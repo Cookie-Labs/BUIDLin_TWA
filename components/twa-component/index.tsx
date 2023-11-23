@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useBackButton, useInitData, useMainButton, usePostEvent } from '@tma.js/sdk-react';
+import { initUserData, User } from '@/states/formUserState';
+import { useSetRecoilState } from 'recoil';
 
-function MainButtonTest() {
+export function MainButtonTest() {
   const mainButton = useMainButton();
   const backButton = useBackButton();
 
@@ -40,51 +42,51 @@ function MainButtonTest() {
   return null;
 }
 
-/**
- * Displays current application init data.
- */
-function InitData() {
+export function InitData() {
   const initData = useInitData();
+  const setInitUserData = useSetRecoilState(initUserData);
 
-  const initDataJson = useMemo(() => {
-    if (!initData) {
-      return 'Init data is empty.';
+  useEffect(() => {
+    if (initData && initData.user) {
+      setInitUserData(initData.user);
     }
-    const {
-      authDate,
-      chat,
-      hash,
-      canSendAfter,
-      queryId,
-      receiver,
-      user,
-      startParam,
-    } = initData;
-
-    return JSON.stringify(
-      {
-        authDate,
-        chat,
-        hash,
-        canSendAfter,
-        queryId,
-        receiver,
-        user,
-        startParam,
-      },
-      null,
-      ' ',
-    );
   }, [initData]);
 
-  return (
-    <pre>
-      <code>{initDataJson}</code>
-    </pre>
-  );
+  // const initDataJson = useMemo(() => {
+  //   if (!initData) {
+  //     return 'Init data is empty.';
+  //   }
+  //   const {
+  //     authDate,
+  //     chat,
+  //     hash,
+  //     canSendAfter,
+  //     queryId,
+  //     receiver,
+  //     user,
+  //     startParam,
+  //   } = initData;
+
+  //   return JSON.stringify(
+  //     {
+  //       authDate,
+  //       chat,
+  //       hash,
+  //       canSendAfter,
+  //       queryId,
+  //       receiver,
+  //       user,
+  //       startParam,
+  //     },
+  //     null,
+  //     ' ',
+  //   );
+  // }, [initData]);
+
+  return null;
 }
 
-function ReadyAndExpand() {
+export function ReadyAndExpand() {
   const postEvent = usePostEvent();
 
   useEffect(() => {
@@ -95,11 +97,11 @@ function ReadyAndExpand() {
   return null;
 }
 
-export default function Test() {
+export default function TwaComponents() {
   return (
     <>
       <ReadyAndExpand />
-      <MainButtonTest />
+      {/* <MainButtonTest /> */}
       <InitData />
     </>
   );

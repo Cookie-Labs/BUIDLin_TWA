@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { EventForm } from '@/mock/eventInterface';
 import { eventsInProgress } from '@/mock/events';
 
-import { applyForEvent, myAPPStep, myFormData } from '@/states/formUserState';
+import { applyForEvent, myAPPStep, myFormData, initUserData } from '@/states/formUserState';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 
 import MainApplyForm from '@/components/event-apply/mainApplyForm';
@@ -20,6 +20,8 @@ export default function EventApplyPage({
 }: {
   params: { slug: string };
 }) {
+  const userData = useRecoilValue(initUserData);
+
   const tab = useRecoilValue(myAPPStep);
   const setApplyForEvent = useSetRecoilState(applyForEvent);
   const [formData, setFormData] = useRecoilState(myFormData);
@@ -62,6 +64,7 @@ export default function EventApplyPage({
         </>
       ) : null}
       <ScrollToTopButton />
+      <div>{JSON.stringify(userData)}</div>
     </div>
   );
 }

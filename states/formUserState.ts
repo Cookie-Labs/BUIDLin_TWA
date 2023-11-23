@@ -6,6 +6,27 @@ export interface FormData {
   [key: string]: any;
 }
 
+export interface User {
+  addedToAttachmentMenu?: boolean;
+  allowsWriteToPm?: boolean;
+  firstName: string;
+  id: number;
+  isBot?: boolean;
+  isPremium?: boolean;
+  lastName?: string;
+  languageCode?: string;
+  photoUrl?: string;
+  username?: string;
+}
+
+export const initUserData = atom<User>({
+  key: 'formUserState/initUserData',
+  default: {
+    firstName: '',
+    id: 0,
+  },
+})
+
 export const applyForEvent = atom({
   key: 'formUserState/applyForEvent',
   default: '',

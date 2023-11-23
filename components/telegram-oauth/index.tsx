@@ -1,12 +1,27 @@
 'use client';
 
-import { useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { myFormData, initUserData } from '@/states/formUserState';
+import { useState, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { myFormData } from '@/states/formUserState';
 import TelegramLoginButton, { TelegramUser } from 'telegram-login-button';
 import { getParticipant, createNewParticipant } from '@/services/dynamoDB';
 
+import { useInitData } from '@tma.js/sdk-react';
+
 import { FaTelegramPlane } from 'react-icons/fa';
+
+interface User {
+  addedToAttachmentMenu?: boolean;
+  allowsWriteToPm?: boolean;
+  firstName: string;
+  id: number;
+  isBot?: boolean;
+  isPremium?: boolean;
+  lastName?: string;
+  languageCode?: string;
+  photoUrl?: string;
+  username?: string;
+}
 
 export const TelegramOAuth = ({
   eventId,
@@ -17,7 +32,12 @@ export const TelegramOAuth = ({
   allChecked: boolean;
   setAllChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const initData = useInitData();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userData, setUserData] = useState<User>({
+    firstName: '',
+    id: 0,
+  });
   const [telegramResponse, setTelegramResponse] = useState<TelegramUser>({
     id: 0,
     first_name: '',
@@ -27,7 +47,12 @@ export const TelegramOAuth = ({
     hash: '',
   });
   const setFormData = useSetRecoilState(myFormData);
-  const userData = useRecoilValue(initUserData);
+
+  useEffect(() => {
+    if (initData && initData.user) {
+      setUserData(initData.user);
+    }
+  }, [initData]);
 
   const handleTelegramResponse = async (response: TelegramUser) => {
     try {

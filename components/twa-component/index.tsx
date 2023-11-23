@@ -1,9 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import { useBackButton, useInitData, useMainButton, usePostEvent } from '@tma.js/sdk-react';
-import { initUserData, User } from '@/states/formUserState';
-import { useSetRecoilState } from 'recoil';
+import { useEffect, useState } from 'react';
+import { useBackButton, useMainButton, usePostEvent } from '@tma.js/sdk-react';
 
 export function MainButtonTest() {
   const mainButton = useMainButton();
@@ -42,50 +40,6 @@ export function MainButtonTest() {
   return null;
 }
 
-export function InitData() {
-  const initData = useInitData();
-  const setInitUserData = useSetRecoilState(initUserData);
-
-  useEffect(() => {
-    if (initData && initData.user) {
-      setInitUserData(initData.user);
-    }
-  }, [initData]);
-
-  // const initDataJson = useMemo(() => {
-  //   if (!initData) {
-  //     return 'Init data is empty.';
-  //   }
-  //   const {
-  //     authDate,
-  //     chat,
-  //     hash,
-  //     canSendAfter,
-  //     queryId,
-  //     receiver,
-  //     user,
-  //     startParam,
-  //   } = initData;
-
-  //   return JSON.stringify(
-  //     {
-  //       authDate,
-  //       chat,
-  //       hash,
-  //       canSendAfter,
-  //       queryId,
-  //       receiver,
-  //       user,
-  //       startParam,
-  //     },
-  //     null,
-  //     ' ',
-  //   );
-  // }, [initData]);
-
-  return null;
-}
-
 export function ReadyAndExpand() {
   const postEvent = usePostEvent();
 
@@ -102,7 +56,6 @@ export default function TwaComponents() {
     <>
       <ReadyAndExpand />
       {/* <MainButtonTest /> */}
-      <InitData />
     </>
   );
 }

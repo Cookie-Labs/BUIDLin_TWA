@@ -129,6 +129,10 @@
       {
         "imgUrl": "/images/event1_sponsor2Image.png",
         "name": "WFUNA"
+      },
+      {
+        "imgUrl": "/images/event1_sponsor3Image.png",
+        "name": "GCS"
       }
     ],
     "applyForm": [

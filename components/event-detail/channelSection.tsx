@@ -22,7 +22,7 @@ const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
           return (
             <button
               key={t.name}
-              className="relative flex h-auto w-full cursor-pointer items-center justify-start gap-[2rem] rounded-[1.6rem] bg-secondary px-[2rem] py-[1.6rem] duration-200 hover:scale-105 active:scale-100"
+              className="relative flex h-auto w-full cursor-pointer items-center justify-start gap-[2rem] rounded-[1.6rem] bg-secondary pl-[2rem] pr-[7.2rem] py-[1.6rem] duration-200 hover:scale-105 active:scale-100"
               onClick={() => {
                 handleButtonClick(t.link);
               }}

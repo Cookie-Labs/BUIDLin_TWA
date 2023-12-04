@@ -10,11 +10,11 @@ import {
 } from '@aws-sdk/lib-dynamodb';
 
 const dbClient = new DynamoDBClient({
+  region: process.env.NEXT_PUBLIC_DYNAMO_REGION as string,
   credentials: {
     accessKeyId: process.env.NEXT_PUBLIC_DYNAMO_KEY_ID as string,
     secretAccessKey: process.env.NEXT_PUBLIC_DYNAMO_SECRET_KEY as string,
   },
-  region: 'ap-northeast-2',
 });
 const docClient = DynamoDBDocumentClient.from(dbClient);
 

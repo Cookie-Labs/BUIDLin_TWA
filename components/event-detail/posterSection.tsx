@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const PosterSection = ({posterImgUrl} : {posterImgUrl: string}) => {
   return (
-    <div className="aspect-[1/0.56145] w-full">
+    <div className="aspect-[16/9] w-full">
       <Image
         src={posterImgUrl}
         alt="event image url"

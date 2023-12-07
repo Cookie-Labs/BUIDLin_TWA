@@ -41,7 +41,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
         onClick={handleEventDetailClick}
         className="flex aspect-[1/0.94972] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[1.6rem] border border-solid border-gray14 duration-200 hover:scale-105 active:scale-100"
       >
-        <div className="aspect-[1/0.56145] w-full">
+        <div className="aspect-[16/9] w-full">
           <Image
             src={eventItem.posterImgUrl}
             alt="event image url"

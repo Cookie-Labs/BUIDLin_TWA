@@ -17,12 +17,12 @@ export default function HomePage() {
       try {
         const publicEventsId = await getPublicEventsId();
         if (publicEventsId?.Items !== undefined) {
-          const publicEventsData = await Promise.all(
+          const publicEventsData = (await Promise.all(
             publicEventsId.Items.map(async (obj) => {
               const response = await getEventData({ eventId: obj.id });
               return response.Item;
             }),
-          ) as EventForm[];
+          )) as EventForm[];
 
           setCurrentEvents(publicEventsData);
         }
@@ -56,9 +56,15 @@ export default function HomePage() {
           Current Events
         </div>
         <div className="flex h-auto w-full flex-col items-center justify-center gap-24">
-          {currentEvents.map((event) => {
-            return <Card key={event.id} eventItem={event} />;
-          })}
+          {currentEvents.length !== 0 ? (
+            currentEvents.map((event) => {
+              return <Card key={event.id} eventItem={event} />;
+            })
+          ) : (
+            <span className="text-[2rem] font-semiBold text-gray10 text-center">
+              There are no public events currently in progress! 😅😅
+            </span>
+          )}
         </div>
         <ScrollToTopButton />
       </div>

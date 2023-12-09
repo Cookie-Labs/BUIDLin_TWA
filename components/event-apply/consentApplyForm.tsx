@@ -8,7 +8,12 @@ import { myAPPStep, myFormData, applyForEvent } from '@/states/formUserState';
 import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import ScrollToTop from './scrollToTop';
 
-import { submitParticipant, addUserParticipated } from '@/services/dynamoDB';
+import {
+  submitParticipant,
+  addUserParticipated,
+  getUserData,
+  createNewUser,
+} from '@/services/dynamoDB';
 
 const ConsentApplyForm = ({
   section,
@@ -49,10 +54,26 @@ const ConsentApplyForm = ({
           tableName: eventId,
           userTelegramId: formData.userTelegramId,
         });
-        await addUserParticipated({
+
+        let user = await getUserData({
           userTelegramId: formData.userTelegramId,
-          participatedEvent: eventId,
         });
+        if (user?.Item !== undefined) {
+          // Not the first time in
+          await addUserParticipated({
+            userTelegramId: formData.userTelegramId,
+            participatedEvent: eventId,
+          });
+        } else {
+          // First time in
+          const initUserData = {
+            id: formData.userTelegramId,
+            createdEvents: [],
+            participatedEvents: [eventId],
+            walletAddress: '',
+          };
+          await createNewUser({ firstUserData: initUserData });
+        }
         setFormData((prevState) => ({
           ...prevState,
           userIsSubmitted: true,

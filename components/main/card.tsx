@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { EventForm } from '@/mock/eventInterface';
+import { EventForm } from '../event-interface';
 import Image from 'next/image';
 
 import LoadingCard from './loadingCard';
@@ -46,7 +46,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
             src={eventItem.posterImgUrl}
             alt="event image url"
             priority
-            className="w-full h-auto rounded-t-[1.6rem] object-fill"
+            className="h-auto w-full rounded-t-[1.6rem] object-fill"
             width={1000}
             height={1000}
           />

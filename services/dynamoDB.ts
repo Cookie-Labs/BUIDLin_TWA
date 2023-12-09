@@ -134,7 +134,11 @@ export const submitParticipant = async ({
   }
 };
 
-export const getParticipantCount = async ({ tableName }: { tableName: string }) => {
+export const getParticipantCount = async ({
+  tableName,
+}: {
+  tableName: string;
+}) => {
   const command = new ScanCommand({
     TableName: tableName,
     Select: 'COUNT',
@@ -144,6 +148,119 @@ export const getParticipantCount = async ({ tableName }: { tableName: string }) 
     const response = await docClient.send(command);
     console.log(response);
     return response.Count;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createNewEvent = async ({
+  tableName,
+  participantData,
+}: {
+  tableName: string;
+  participantData: any;
+}) => {
+  const command = new PutCommand({
+    TableName: tableName,
+    Item: participantData,
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserData = async ({
+  userTelegramId,
+}: {
+  userTelegramId: number;
+}) => {
+  const command = new GetCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_USERS_TABLE as string,
+    Key: {
+      id: userTelegramId,
+    },
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createNewUser = async ({
+  firstUserData,
+}: {
+  firstUserData: {
+    id: number;
+    createdEvents: string[];
+    participatedEvents: string[];
+    walletAddress: string;
+  };
+}) => {
+  const command = new PutCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_USERS_TABLE as string,
+    Item: firstUserData,
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getEventData = async ({ eventId }: { eventId: string }) => {
+  const command = new GetCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_ALL_EVENTS_TABLE as string,
+    Key: {
+      id: eventId,
+    },
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getPublicEventsId = async () => {
+  const command = new ScanCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_PUBLIC_EVENTS_TABLE as string,
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getEventParticipantsData = async ({
+  eventId,
+}: {
+  eventId: string;
+}) => {
+  const command = new ScanCommand({
+    TableName: eventId as string,
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
   } catch (error) {
     throw error;
   }

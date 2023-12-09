@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { ScheduleForm } from '@/mock/eventInterface';
+import { ScheduleForm } from '../event-interface';
 
 const ProgramSection = ({ schedule }: { schedule: ScheduleForm[] }) => {
   return (

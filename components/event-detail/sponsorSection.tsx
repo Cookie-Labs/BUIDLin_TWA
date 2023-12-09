@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { SponsorsForm } from '@/mock/eventInterface';
+import { SponsorsForm } from '../event-interface';
 
 const SponsorSection = ({ sponsors }: { sponsors: SponsorsForm[] }) => {
   return (

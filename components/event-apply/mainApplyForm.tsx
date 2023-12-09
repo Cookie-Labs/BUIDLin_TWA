@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { TelegramOAuth } from '../telegram-oauth';
-import { ApplyForm } from '@/mock/eventInterface';
+import { ApplyForm } from '../event-interface';
 import { applyForEvent, myFormData, myAPPStep } from '@/states/formUserState';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import ScrollToTop from './scrollToTop';

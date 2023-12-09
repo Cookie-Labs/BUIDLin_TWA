@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { SpeakersForm } from '@/mock/eventInterface';
+import { SpeakersForm } from '../event-interface';
 
 const SpeakerSection = ({ speakers }: { speakers: SpeakersForm[] }) => {
   return (
@@ -10,7 +10,7 @@ const SpeakerSection = ({ speakers }: { speakers: SpeakersForm[] }) => {
           These are the keynote speakers for this event.
         </span>
       </div>
-      <div className="w-full h-auto grid grid-cols-3 items-start justify-center gap-[2.9rem]">
+      <div className="grid h-auto w-full grid-cols-3 items-start justify-center gap-[2.9rem]">
         {speakers.map((s) => {
           return (
             <div

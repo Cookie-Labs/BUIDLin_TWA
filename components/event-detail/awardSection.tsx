@@ -1,11 +1,7 @@
 import { addCommasToNumber } from '@/utils/parser';
-import { AwardForm } from '@/mock/eventInterface';
+import { AwardForm } from '../event-interface';
 
-const AwardSection = ({
-  award,
-}: {
-  award: AwardForm[];
-}) => {
+const AwardSection = ({ award }: { award: AwardForm[] }) => {
   const totalPrize = award.reduce((acc, item) => {
     return acc + parseInt(item.teamCount) * item.prize;
   }, 0);

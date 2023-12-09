@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ApplyForm } from '@/mock/eventInterface';
+import { ApplyForm } from '../event-interface';
 import EachQuestionForm from './eachQuestionForm';
 
 import { myAPPStep, myFormData, applyForEvent } from '@/states/formUserState';

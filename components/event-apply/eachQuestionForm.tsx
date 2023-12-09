@@ -7,7 +7,7 @@
 
 'use client';
 
-import { QuestionForm } from '@/mock/eventInterface';
+import { QuestionForm } from '../event-interface';
 import { useState, useEffect } from 'react';
 
 const EachQuestionForm = ({

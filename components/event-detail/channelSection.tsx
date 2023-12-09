@@ -1,7 +1,7 @@
 'use client';
 
 import { BiRightArrowAlt } from 'react-icons/bi';
-import { TelegramForm } from '@/mock/eventInterface';
+import { TelegramForm } from '../event-interface';
 import Image from 'next/image';
 
 const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
@@ -22,7 +22,7 @@ const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
           return (
             <button
               key={t.name}
-              className="relative flex h-auto w-full cursor-pointer items-center justify-start gap-[2rem] rounded-[1.6rem] bg-secondary pl-[2rem] pr-[7.2rem] py-[1.6rem] duration-200 hover:scale-105 active:scale-100"
+              className="relative flex h-auto w-full cursor-pointer items-center justify-start gap-[2rem] rounded-[1.6rem] bg-secondary py-[1.6rem] pl-[2rem] pr-[7.2rem] duration-200 hover:scale-105 active:scale-100"
               onClick={() => {
                 handleButtonClick(t.link);
               }}
@@ -42,7 +42,9 @@ const ChannelSection = ({ telegram }: { telegram: TelegramForm[] }) => {
                     height={1000}
                   />
                 ) : (
-                  <span className="text-[3rem] font-regular text-white">🎉</span>
+                  <span className="text-[3rem] font-regular text-white">
+                    🎉
+                  </span>
                 )}
               </div>
               <span className="text-[1.6rem] font-semiBold text-white">

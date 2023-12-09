@@ -49,10 +49,10 @@ const ConsentApplyForm = ({
           tableName: eventId,
           userTelegramId: formData.userTelegramId,
         });
-        // await addUserParticipated({
-        //   userTelegramId: formData.userTelegramId,
-        //   participatedEvent: eventId,
-        // });
+        await addUserParticipated({
+          userTelegramId: formData.userTelegramId,
+          participatedEvent: eventId,
+        });
         setFormData((prevState) => ({
           ...prevState,
           userIsSubmitted: true,

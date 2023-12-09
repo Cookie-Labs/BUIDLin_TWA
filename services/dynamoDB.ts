@@ -276,7 +276,7 @@ export const addUserParticipated = async ({
   const command = new UpdateCommand({
     TableName: process.env.NEXT_PUBLIC_DYNAMO_USERS_TABLE as string,
     Key: {
-      userTelegramId: userTelegramId,
+      id: userTelegramId,
     },
     UpdateExpression:
       'SET participatedEvents = list_append(participatedEvents, :newEvent)',

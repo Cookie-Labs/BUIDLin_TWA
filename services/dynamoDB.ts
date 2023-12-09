@@ -265,3 +265,31 @@ export const getEventParticipantsData = async ({
     throw error;
   }
 };
+
+export const addUserParticipated = async ({
+  userTelegramId,
+  participatedEvent,
+}: {
+  userTelegramId: number;
+  participatedEvent: string;
+}) => {
+  const command = new UpdateCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_USERS_TABLE as string,
+    Key: {
+      userTelegramId: userTelegramId,
+    },
+    UpdateExpression:
+      'SET participatedEvents = list_append(participatedEvents, :newEvent)',
+    ExpressionAttributeValues: {
+      ':newEvent': [participatedEvent],
+    },
+    ReturnValues: 'UPDATED_NEW',
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};

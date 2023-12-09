@@ -8,7 +8,7 @@ import { myAPPStep, myFormData, applyForEvent } from '@/states/formUserState';
 import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import ScrollToTop from './scrollToTop';
 
-import { submitParticipant } from '@/services/dynamoDB';
+import { submitParticipant, addUserParticipated } from '@/services/dynamoDB';
 
 const ConsentApplyForm = ({
   section,
@@ -48,6 +48,10 @@ const ConsentApplyForm = ({
         await submitParticipant({
           tableName: eventId,
           userTelegramId: formData.userTelegramId,
+        });
+        await addUserParticipated({
+          userTelegramId: formData.userTelegramId,
+          participatedEvent: eventId,
         });
         setFormData((prevState) => ({
           ...prevState,

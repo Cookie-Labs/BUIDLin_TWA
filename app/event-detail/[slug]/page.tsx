@@ -56,6 +56,7 @@ export default function EventDetailPage({
     setFormData({
       userTelegramId: 0,
       userIsSubmitted: false,
+      userIsParticipated: false,
     });
   }, []);
 

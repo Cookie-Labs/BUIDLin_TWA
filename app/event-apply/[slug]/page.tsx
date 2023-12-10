@@ -54,6 +54,7 @@ export default function EventApplyPage({
     setFormData({
       userTelegramId: 0,
       userIsSubmitted: false,
+      userIsParticipated: false,
     });
   }, [currentEvent]);
 

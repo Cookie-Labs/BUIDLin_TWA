@@ -1,6 +1,8 @@
-//TODO: https://medium.com/@2018.itsuki/dynamo-db-with-next-js-ea24b0cf78a4
+//REF-client-dynamodb: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/dynamodb/
+//REF-lib-dynamodb: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-lib-dynamodb/
 
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { EventForm } from '@/components/event-interface';
+import { DynamoDBClient, CreateTableCommand } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
   GetCommand,
@@ -19,6 +21,7 @@ const dbClient = new DynamoDBClient({
 });
 const docClient = DynamoDBDocumentClient.from(dbClient);
 
+// TABLE(eventId) -> add participant init data
 export const createNewParticipant = async ({
   tableName,
   participantData,
@@ -27,6 +30,7 @@ export const createNewParticipant = async ({
   participantData: {
     userTelegramId: number;
     userIsSubmitted: boolean;
+    userIsParticipated: boolean;
   };
 }) => {
   const command = new PutCommand({
@@ -42,6 +46,7 @@ export const createNewParticipant = async ({
   }
 };
 
+// TABLE(eventId) -> get participant data
 export const getParticipant = async ({
   tableName,
   userTelegramId,
@@ -65,6 +70,7 @@ export const getParticipant = async ({
   }
 };
 
+// TABLE(eventId) -> delete participant data with updateParticipant function
 export const deleteParticipant = async ({
   tableName,
   userTelegramId,
@@ -87,6 +93,7 @@ export const deleteParticipant = async ({
   }
 };
 
+// TABLE(eventId) -> update participant data with deleteParticipant function
 export const updateParticipant = async ({
   tableName,
   participantData,
@@ -107,6 +114,7 @@ export const updateParticipant = async ({
   }
 };
 
+// TABLE(eventId) -> update submitted participant data
 export const submitParticipant = async ({
   tableName,
   userTelegramId,
@@ -123,7 +131,7 @@ export const submitParticipant = async ({
     ExpressionAttributeValues: {
       ':submitted': true,
     },
-    ReturnValues: 'ALL_NEW',
+    ReturnValues: 'UPDATED_NEW',
   });
 
   try {
@@ -134,6 +142,35 @@ export const submitParticipant = async ({
   }
 };
 
+// TABLE(eventId) -> update participated participant data
+export const participatedParticipant = async ({
+  tableName,
+  userTelegramId,
+}: {
+  tableName: string;
+  userTelegramId: number;
+}) => {
+  const command = new UpdateCommand({
+    TableName: tableName,
+    Key: {
+      userTelegramId: userTelegramId,
+    },
+    UpdateExpression: 'SET userIsParticipated = :participated',
+    ExpressionAttributeValues: {
+      ':participated': true,
+    },
+    ReturnValues: 'UPDATED_NEW',
+  });
+
+  try {
+    await docClient.send(command);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+// TABLE(eventId) -> get participants count
 export const getParticipantCount = async ({
   tableName,
 }: {
@@ -153,26 +190,26 @@ export const getParticipantCount = async ({
   }
 };
 
-export const createNewEvent = async ({
-  tableName,
-  participantData,
+// TABLE(eventId) -> get all participant data
+export const getEventParticipantsData = async ({
+  eventId,
 }: {
-  tableName: string;
-  participantData: any;
+  eventId: string;
 }) => {
-  const command = new PutCommand({
-    TableName: tableName,
-    Item: participantData,
+  const command = new ScanCommand({
+    TableName: eventId as string,
   });
 
   try {
-    await docClient.send(command);
-    console.log('Success');
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
+// TABLE(users) -> get user data
 export const getUserData = async ({
   userTelegramId,
 }: {
@@ -194,6 +231,7 @@ export const getUserData = async ({
   }
 };
 
+// TABLE(users) -> add user init data
 export const createNewUser = async ({
   firstUserData,
 }: {
@@ -217,55 +255,7 @@ export const createNewUser = async ({
   }
 };
 
-export const getEventData = async ({ eventId }: { eventId: string }) => {
-  const command = new GetCommand({
-    TableName: process.env.NEXT_PUBLIC_DYNAMO_ALL_EVENTS_TABLE as string,
-    Key: {
-      id: eventId,
-    },
-  });
-
-  try {
-    const response = await docClient.send(command);
-    console.log(response);
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getPublicEventsId = async () => {
-  const command = new ScanCommand({
-    TableName: process.env.NEXT_PUBLIC_DYNAMO_PUBLIC_EVENTS_TABLE as string,
-  });
-
-  try {
-    const response = await docClient.send(command);
-    console.log(response);
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getEventParticipantsData = async ({
-  eventId,
-}: {
-  eventId: string;
-}) => {
-  const command = new ScanCommand({
-    TableName: eventId as string,
-  });
-
-  try {
-    const response = await docClient.send(command);
-    console.log(response);
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
+// TABLE(users) -> update user participated event
 export const addUserParticipated = async ({
   userTelegramId,
   participatedEvent,
@@ -289,6 +279,85 @@ export const addUserParticipated = async ({
   try {
     await docClient.send(command);
     console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+// TABLE(allEvents) -> get event data
+export const getEventData = async ({ eventId }: { eventId: string }) => {
+  const command = new GetCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_ALL_EVENTS_TABLE as string,
+    Key: {
+      id: eventId,
+    },
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// TABLE(allEvents) + TABLE(users) + TABLE(eventId) -> create new event
+export const createNewEvent = async ({
+  eventData,
+}: {
+  eventData: EventForm;
+}) => {
+  const addAllEvents = new PutCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_ALL_EVENTS_TABLE as string,
+    Item: eventData,
+  });
+
+  const addUserHosted = new UpdateCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_USERS_TABLE as string,
+    Key: {
+      id: eventData.hostTelegramId[0],
+    },
+    UpdateExpression:
+      'SET createdEvents = list_append(createdEvents, :newEvent)',
+    ExpressionAttributeValues: {
+      ':newEvent': [eventData.id],
+    },
+    ReturnValues: 'UPDATED_NEW',
+  });
+
+  const newEventTableForParticipants = new CreateTableCommand({
+    TableName: eventData.id,
+    KeySchema: [{ AttributeName: 'userTelegramId', KeyType: 'HASH' }],
+    AttributeDefinitions: [
+      { AttributeName: 'userTelegramId', AttributeType: 'N' },
+    ],
+    ProvisionedThroughput: {
+      ReadCapacityUnits: 5,
+      WriteCapacityUnits: 5,
+    },
+  });
+
+  try {
+    await docClient.send(addAllEvents);
+    await docClient.send(addUserHosted);
+    await dbClient.send(newEventTableForParticipants);
+    console.log('Success');
+  } catch (error) {
+    throw error;
+  }
+};
+
+// TABLE(publicEvents) -> get all public events id
+export const getPublicEventsId = async () => {
+  const command = new ScanCommand({
+    TableName: process.env.NEXT_PUBLIC_DYNAMO_PUBLIC_EVENTS_TABLE as string,
+  });
+
+  try {
+    const response = await docClient.send(command);
+    console.log(response);
+    return response;
   } catch (error) {
     throw error;
   }

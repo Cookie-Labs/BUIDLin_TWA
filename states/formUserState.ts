@@ -21,5 +21,6 @@ export const myFormData = atom<FormData>({
   default: {
     userTelegramId: 0,
     userIsSubmitted: false,
+    userIsParticipated: false,
   },
 });

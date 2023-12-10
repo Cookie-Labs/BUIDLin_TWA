@@ -69,6 +69,7 @@ export const TelegramOAuth = ({
           participantData: {
             userTelegramId: response.id,
             userIsSubmitted: false,
+            userIsParticipated: false,
           },
         });
         setIsSubmitted(false);
@@ -76,6 +77,7 @@ export const TelegramOAuth = ({
         setFormData({
           userTelegramId: response.id,
           userIsSubmitted: false,
+          userIsParticipated: false,
         });
       } else {
         if (user?.Item.userIsSubmitted) {
@@ -84,6 +86,7 @@ export const TelegramOAuth = ({
           setFormData({
             userTelegramId: 0,
             userIsSubmitted: false,
+            userIsParticipated: false,
           });
         } else {
           setIsSubmitted(false);

@@ -1,6 +1,6 @@
 export interface AwardForm {
   rank: string;
-  teamCount: string;
+  teamCount: number;
   prize: number;
   currency: string;
   emoji: string;

@@ -30,6 +30,12 @@ const ApplyButton = ({
     if (deadline < Date.now()) {
       mainButton.disable().show();
       mainButton.setText('Recruitment Completed');
+      mainButton.setTextColor('#555555');
+      mainButton.setBackgroundColor('#333333');
+
+      return () => {
+        mainButton.hide();
+      }
     } else {
       const onMainButtonClick = () => handleApplyButtonClick();
 

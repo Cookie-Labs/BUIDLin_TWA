@@ -13,6 +13,7 @@ import ChannelSection from '@/components/event-detail/channelSection';
 import InformationSection from '@/components/event-detail/informationSection';
 import ProgramSection from '@/components/event-detail/programSection';
 import SpeakerSection from '@/components/event-detail/speakerSection';
+import OrganizerSection from '@/components/event-detail/organizerSection';
 import SponsorSection from '@/components/event-detail/sponsorSection';
 import ApplyButton from '@/components/event-detail/applyButton';
 import ScrollToTopButton from '@/components/scroll-to-top-button';
@@ -93,6 +94,9 @@ export default function EventDetailPage({
         )}
         {currentEvent.speakers && (
           <SpeakerSection speakers={currentEvent.speakers} />
+        )}
+        {currentEvent.organizers && (
+          <OrganizerSection organizers={currentEvent.organizers} />
         )}
         {currentEvent.sponsors && (
           <SponsorSection sponsors={currentEvent.sponsors} />

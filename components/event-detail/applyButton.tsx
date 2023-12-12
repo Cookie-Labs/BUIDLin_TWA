@@ -10,7 +10,13 @@ import { myAPPStep } from '@/states/formUserState';
 
 import { useMainButton } from '@tma.js/sdk-react';
 
-const ApplyButton = ({ eventId }: { eventId: string }) => {
+const ApplyButton = ({
+  eventId,
+  deadline,
+}: {
+  eventId: string;
+  deadline: number;
+}) => {
   const router = useRouter();
   const mainButton = useMainButton();
   const setMyAPPStep = useSetRecoilState(myAPPStep);
@@ -21,15 +27,20 @@ const ApplyButton = ({ eventId }: { eventId: string }) => {
   };
 
   useEffect(() => {
-    const onMainButtonClick = () => handleApplyButtonClick();
+    if (deadline < Date.now()) {
+      mainButton.disable().show();
+      mainButton.setText('Recruitment Completed');
+    } else {
+      const onMainButtonClick = () => handleApplyButtonClick();
 
-    mainButton.enable().show();
-    mainButton.setText('Apply');
-    mainButton.on('click', onMainButtonClick);
+      mainButton.enable().show();
+      mainButton.setText('Apply');
+      mainButton.on('click', onMainButtonClick);
 
-    return () => {
-      mainButton.off('click', onMainButtonClick);
-      mainButton.hide();
+      return () => {
+        mainButton.off('click', onMainButtonClick);
+        mainButton.hide();
+      };
     }
   }, []);
 
@@ -44,7 +55,7 @@ const ApplyButton = ({ eventId }: { eventId: string }) => {
   //     </span>
   //   </button>
   // );
-  
+
   // for Telegram App
   return null;
 };

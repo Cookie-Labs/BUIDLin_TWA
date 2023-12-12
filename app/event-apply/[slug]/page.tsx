@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { EventForm } from '@/components/event-interface';
 import { getEventData } from '@/services/dynamoDB';
@@ -21,6 +22,7 @@ export default function EventApplyPage({
 }: {
   params: { slug: string };
 }) {
+  const router = useRouter();
   const tab = useRecoilValue(myAPPStep);
   const setApplyForEvent = useSetRecoilState(applyForEvent);
   const [formData, setFormData] = useRecoilState(myFormData);
@@ -36,6 +38,9 @@ export default function EventApplyPage({
         if (eventData?.Item !== undefined) {
           const eventItem = eventData.Item as EventForm;
           setCurrentEvent(eventItem);
+          if (eventItem.deadline < Date.now()) router.push(`/event-detail/${eventItem.id}`);
+        } else {
+          router.push('/');
         }
         setIsLoading(false);
       } catch (error) {

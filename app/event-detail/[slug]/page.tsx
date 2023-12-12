@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { EventForm } from '@/components/event-interface';
 import { getEventData } from '@/services/dynamoDB';
@@ -26,6 +27,7 @@ export default function EventDetailPage({
 }: {
   params: { slug: string };
 }) {
+  const router = useRouter();
   const setTab = useSetRecoilState(myAPPStep);
   const setFormData = useSetRecoilState(myFormData);
   const [currentEvent, setCurrentEvent] = useState<EventForm | undefined>(
@@ -40,6 +42,8 @@ export default function EventDetailPage({
         if (eventData?.Item !== undefined) {
           const eventItem = eventData.Item as EventForm;
           setCurrentEvent(eventItem);
+        } else {
+          router.push('/');
         }
         setIsLoading(false);
       } catch (error) {
@@ -93,7 +97,7 @@ export default function EventDetailPage({
         {currentEvent.sponsors && (
           <SponsorSection sponsors={currentEvent.sponsors} />
         )}
-        {currentEvent.applyForm && <ApplyButton eventId={currentEvent.id} />}
+        {currentEvent.applyForm && <ApplyButton eventId={currentEvent.id} deadline={currentEvent.deadline}/>}
         <ScrollToTopButton />
       </div>
     );

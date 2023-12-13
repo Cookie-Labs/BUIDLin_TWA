@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useBackButton, usePostEvent } from '@tma.js/sdk-react';
+import { useBackButton, useViewport, useWebApp } from '@tma.js/sdk-react';
 
 export function BackButton() {
   const router = useRouter();
@@ -33,11 +33,12 @@ export function BackButton() {
 }
 
 export function ReadyAndExpand() {
-  const postEvent = usePostEvent();
+  const webapp = useWebApp();
+  const viewport = useViewport();
 
   useEffect(() => {
-    postEvent('web_app_ready');
-    postEvent('web_app_expand');
+    webapp.ready();
+    viewport.expand();
   }, []);
 
   return null;

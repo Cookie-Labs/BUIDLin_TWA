@@ -13,15 +13,8 @@ export function BackButton() {
     router.back();
   };
 
-  const handleGoMainClick = () => {
-    router.replace('/');
-  }
-
   useEffect(() => {
-    const onBackButtonClick = pathname.includes('/event-detail')
-      ? () => handleGoMainClick()
-      : () => handleBackButtonClick();
-      
+    const onBackButtonClick = () => handleBackButtonClick();
     backButton.on('click', onBackButtonClick);
     return () => {
       backButton.off('click', onBackButtonClick);

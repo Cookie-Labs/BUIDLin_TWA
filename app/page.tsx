@@ -18,7 +18,7 @@ export default function HomePage() {
     if (initData && initData.startParam) {
       router.replace(`/event-detail/${initData.startParam}`);
     }
-  }, [initData]);
+  }, [initData?.startParam]);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentEvents, setCurrentEvents] = useState<EventForm[]>([]);

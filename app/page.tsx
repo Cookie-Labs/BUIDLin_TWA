@@ -42,7 +42,7 @@ export default function HomePage() {
   }, []);
 
   if (initData && initData.startParam) {
-    router.push(`/event-detail/${initData.startParam}`);
+    router.replace(`/event-detail/${initData.startParam}`);
   } else if (isLoading) {
     return (
       <div className="flex min-h-[100vh] max-w-[100%] flex-col items-center justify-start bg-primary p-[1.6rem] pt-[3.2rem]">

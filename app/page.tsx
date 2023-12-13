@@ -16,7 +16,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (initData && initData.startParam) {
-      router.push(`/event-detail/${initData.startParam}`);
+      router.replace(`/event-detail/${initData.startParam}`);
     }
   }, [initData]);
 
@@ -72,7 +72,7 @@ export default function HomePage() {
               return <Card key={event.id} eventItem={event} />;
             })
           ) : (
-            <span className="text-[2rem] font-semiBold text-gray10 text-center">
+            <span className="text-center text-[2rem] font-semiBold text-gray10">
               There are no public events currently in progress! 😅😅
             </span>
           )}

@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import Card from '@/components/main/card';
@@ -9,6 +10,16 @@ import { getEventData, getPublicEventsId } from '@/services/dynamoDB';
 import ScrollToTopButton from '@/components/scroll-to-top-button';
 
 export default function HomePage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const startParam = searchParams.get('startapp') || searchParams.get('startApp');
+
+  useEffect(() => {
+    if (startParam) {
+      router.push(`/${startParam}`);
+    }
+  }, [searchParams, startParam]);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentEvents, setCurrentEvents] = useState<EventForm[]>([]);
 

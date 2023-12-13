@@ -16,7 +16,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (initData && initData.startParam) {
-      router.replace(`/event-detail/${initData.startParam}`);
+      router.push(`/event-detail/${initData.startParam}`);
     }
   }, [initData?.startParam]);
 

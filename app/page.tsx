@@ -14,12 +14,6 @@ export default function HomePage() {
   const router = useRouter();
   const initData = useInitData();
 
-  useEffect(() => {
-    if (initData && initData.startParam) {
-      router.push(`/event-detail/${initData.startParam}`);
-    }
-  }, [initData?.startParam]);
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentEvents, setCurrentEvents] = useState<EventForm[]>([]);
 
@@ -47,7 +41,9 @@ export default function HomePage() {
     getCurrentEvents();
   }, []);
 
-  if (isLoading) {
+  if (initData && initData.startParam) {
+    router.push(`/event-detail/${initData.startParam}`);
+  } else if (isLoading) {
     return (
       <div className="flex min-h-[100vh] max-w-[100%] flex-col items-center justify-start bg-primary p-[1.6rem] pt-[3.2rem]">
         <div className="mb-[3.2rem] text-[2.4rem] font-bold text-white">

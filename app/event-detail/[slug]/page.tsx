@@ -23,14 +23,11 @@ import Loading from './loading';
 import { myAPPStep, myFormData } from '@/states/formUserState';
 import { useSetRecoilState } from 'recoil';
 
-import {useBackButton} from '@tma.js/sdk-react';
-
 export default function EventDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const backButton = useBackButton();
   const router = useRouter();
   const setTab = useSetRecoilState(myAPPStep);
   const setFormData = useSetRecoilState(myFormData);
@@ -66,13 +63,6 @@ export default function EventDetailPage({
       userIsSubmitted: false,
       userIsParticipated: false,
     });
-    const onBackButtonClick = () => router.replace('/');
-    backButton.show();
-    backButton.on('click', onBackButtonClick);
-    return () => {
-      backButton.hide();
-      backButton.off('click', onBackButtonClick);
-    }
   }, []);
 
   if (isLoading) {

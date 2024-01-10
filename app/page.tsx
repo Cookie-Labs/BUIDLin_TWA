@@ -22,13 +22,17 @@ export default function HomePage() {
       try {
         const publicEventsId = await getPublicEventsId();
         if (publicEventsId?.Items !== undefined) {
-          const publicEventsData = (await Promise.all(
+          const fetchedData = await Promise.all(
             publicEventsId.Items.map(async (obj) => {
-              const response = await getEventData({ eventId: obj.id });
-              return response.Item;
+              const response = await getEventData({ eventId: obj.event_id });
+              return { ...response.Item, sort_id: obj.sort_id };
             }),
-          )) as EventForm[];
+          );
+          fetchedData.sort((a, b) => a.sort_id - b.sort_id);
 
+          const publicEventsData = fetchedData.map(
+            ({ sort_id, ...rest }) => rest,
+          ) as EventForm[];
           setCurrentEvents(publicEventsData);
         }
         setIsLoading(false);
@@ -49,7 +53,7 @@ export default function HomePage() {
         <div className="mb-[3.2rem] text-[2.4rem] font-bold text-white">
           Current Events
         </div>
-        <div className="flex h-auto w-full flex-col items-center justify-center gap-24">
+        <div className="flex h-auto w-full flex-col items-center justify-center gap-[4rem]">
           <LoadingCard />
           <LoadingCard />
           <LoadingCard />
@@ -62,7 +66,7 @@ export default function HomePage() {
         <div className="mb-[3.2rem] text-[2.4rem] font-bold text-white">
           Current Events
         </div>
-        <div className="flex h-auto w-full flex-col items-center justify-center gap-24">
+        <div className="flex h-auto w-full flex-col items-center justify-center gap-[4rem]">
           {currentEvents.length !== 0 ? (
             currentEvents.map((event) => {
               return <Card key={event.id} eventItem={event} />;

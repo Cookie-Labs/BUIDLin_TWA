@@ -41,7 +41,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
         onClick={handleEventDetailClick}
         className="flex aspect-[1/0.94972] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[1.6rem] border border-solid border-gray14 duration-200 hover:scale-105 active:scale-100"
       >
-        <div className="aspect-[16/9] w-full">
+        <div className="aspect-[16/9] w-full overflow-hidden">
           <Image
             src={eventItem.posterImgUrl}
             alt="event image url"
@@ -79,7 +79,7 @@ const Card = ({ eventItem }: { eventItem: EventForm }) => {
             <span className="line-clamp-1 max-w-full pb-0.5 text-left text-[1.6rem] font-semiBold text-white">
               {eventItem.title}
             </span>
-            <span className="line-clamp-2 max-w-full pb-0.5 text-left text-[1.2rem] font-regular text-gray10">
+            <span className="line-clamp-2 max-w-full pb-0.5 text-left text-[1.2rem] font-regular text-gray10 leading-6">
               {eventItem.description}
             </span>
           </div>
